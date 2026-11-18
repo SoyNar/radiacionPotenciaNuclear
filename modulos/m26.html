@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Módulo 26 · Potencia nuclear</title>
+<link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+<header><strong>Física conceptual · Parcial 3</strong>
+  <nav><a href="../index.html#estudio">← Todos los módulos</a></nav></header>
+<main>
+  <h1>Módulo 26: Potencia nuclear</h1>
+  <p class="fuente">Fuente: diapositivas de la presentación (fisión, bomba vs. reactor, central y fórmulas) + unidad 11 de Electromagnetismo (inducción y generador) + valores típicos de referencia</p>
+  <p>Una reacción en cadena de fisión libera mucha energía. Un reactor controla esa cadena y usa el calor para producir vapor. El vapor mueve una turbina, y la turbina gira un generador, que produce electricidad por inducción. Un reactor es, en el fondo, una máquina de vapor: solo cambia la fuente de calor.</p>
+
+  <h2>Conceptos clave</h2>
+  <ul>
+    <li><b>Fisión en cadena:</b> un neutrón parte un núcleo de U-235 y salen 2 o 3 neutrones. Con masa crítica la cadena se sostiene y crece.</li>
+    <li><b>Bomba vs. reactor:</b> misma física. La bomba no tiene control; el reactor usa <b>barras de control</b> que absorben neutrones y mantienen la cadena estable.</li>
+    <li><b>Central:</b> reactor → calor → agua se vuelve vapor → turbina → generador → electricidad.</li>
+    <li><b>Generador:</b> al girar una bobina en un campo magnético cambia el flujo que la atraviesa, y eso induce una fem (ley de Faraday y Lenz).</li>
+    <li><b>Eficiencia:</b> no toda la energía térmica se vuelve eléctrica. Una central típica de agua presurizada tiene una eficiencia de aprox. 33 %.</li>
+    <li><b>De dónde sale la energía:</b> la masa perdida en la fisión se convierte en energía según E = mc². Por fisión de un núcleo de U-235 se libera del orden de 200 MeV.</li>
+  </ul>
+
+  <h2>Fórmulas</h2>
+  <p class="formula">E = m c²</p>
+  <p class="fuente">energía asociada a la masa que se pierde en la fisión</p>
+  <p class="formula">η = W<sub>útil</sub> / Q<sub>entrada</sub></p>
+  <p class="fuente">eficiencia: trabajo útil sobre calor de entrada</p>
+  <p class="formula">V<sub>em</sub> = − dφ<sub>B</sub> / dt</p>
+  <p class="fuente">ley de Faraday: la fem es la variación del flujo magnético; el signo menos es la ley de Lenz</p>
+  <p class="formula">φ<sub>B</sub> = B A cos θ &nbsp;→&nbsp; V<sub>em</sub> = B A ω sin θ</p>
+  <p class="fuente">generador de una bobina que gira con velocidad angular ω</p>
+
+  <h2>Interactivo 1: eficiencia de la central</h2>
+  <div id="efic"></div>
+
+  <h2>Interactivo 2: generador de Faraday</h2>
+  <div id="gen"></div>
+
+  <h2>Pregunta primero</h2>
+  <details><summary>Pregunta 1: Si un reactor produce 3000 MW térmicos y su eficiencia es 33 %, ¿cuánta electricidad produce y cuánta energía se pierde como calor?</summary>
+    <p>Electricidad: 0,33 × 3000 ≈ 990 MW. Calor perdido: 3000 − 990 ≈ 2010 MW.</p></details>
+  <details><summary>Pregunta 2: ¿Por qué el reactor necesita barras de control y la bomba no?</summary>
+    <p>Porque el reactor debe mantener k ≈ 1: si la cadena crece sin freno se sobrecalienta. La bomba está diseñada para que la cadena crezca de forma descontrolada.</p></details>
+  <details><summary>Pregunta 3: En la bobina del generador, ¿en qué ángulo la fem es máxima y por qué?</summary>
+    <p>En θ = 90° o 270°. Allí el flujo que atraviesa la bobina pasa por cero y cambia más rápido, así que −dφ/dt es máxima.</p></details>
+  <details><summary>Pregunta 4: ¿Por qué un reactor es "solo una máquina de vapor"?</summary>
+    <p>Porque lo que cambia es la fuente de calor (fisión en lugar de carbón o gas). Desde el agua en adelante el ciclo es el mismo: vapor, turbina, generador.</p></details>
+</main>
+<script src="../js/dibujos.js"></script>
+<script src="../js/m26.js"></script>
+<script>
+  Dibujos.eficiencia(document.getElementById('efic'));
+  Dibujos.generador(document.getElementById('gen'));
+</script>
+</body>
+</html>

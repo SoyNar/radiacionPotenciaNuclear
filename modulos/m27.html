@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Módulo 27 · Energía y utopía</title>
+<link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+<header><strong>Física conceptual · Parcial 3</strong>
+  <nav><a href="../index.html#estudio">← Todos los módulos</a></nav></header>
+<main>
+  <h1>Módulo 27: Energía y utopía</h1>
+  <p class="fuente">Fuente: Einstein e Infeld, <i>La física: una aventura del pensamiento</i> (epílogo del libro); Helmholtz (1847, web); Clausius (web)</p>
+  <p>Helmholtz formuló en 1847 la conservación de la energía, y con ella la ilusión de que la naturaleza puede reducirse a fuerzas y materia. Pero hay dos límites. El primero es el móvil perpetuo: ninguna máquina conserva su energía útil indefinidamente. El segundo es la dirección del tiempo: el calor pasa de caliente a frío y no al revés. Ese es el precio de la utopía mecanicista.</p>
+
+  <h2>Conceptos clave</h2>
+  <ul>
+    <li><b>Conservación de la energía (Helmholtz, 1847):</b> la suma de todas las formas de energía en un sistema aislado es constante. Helmholtz la llamó «conservación de la fuerza» (<i>Erhaltung der Kraft</i>).</li>
+    <li><b>Utopía mecanicista:</b> Helmholtz soñaba con que «todos los fenómenos naturales se reducen a simples fuerzas», y que la ciencia termina cuando eso se cumple. El libro de Einstein e Infeld muestra que no fue así: el electromagnetismo necesitó el concepto de campo.</li>
+    <li><b>Móvil perpetuo:</b> una máquina que produce trabajo sin consumir energía viola la conservación. Ninguna fricción desaparece: se convierte en calor.</li>
+    <li><b>Irreversibilidad (Clausius):</b> el calor pasa espontáneamente de un cuerpo caliente a uno frío. Eso define la flecha del tiempo, aunque las leyes mecánicas sean reversibles.</li>
+    <li><b>Entropía:</b> en termodinámica mide la irreversibilidad. En la teoría de la información, Shannon usó el mismo nombre para medir la información; la analogía lleva a leer la entropía termodinámica como una medida de desinformación.</li>
+    <li><b>Masa y energía:</b> la relatividad unió la masa y la energía en E = mc². La conservación ya no se aplica por separado a cada una.</li>
+  </ul>
+
+  <h2>Fórmulas</h2>
+  <p class="formula">E<sub>cinética</sub> + E<sub>potencial</sub> + Q = constante</p>
+  <p class="fuente">conservación de la energía en un sistema aislado (Q: energía térmica por fricción)</p>
+  <p class="formula">dS = dQ / T</p>
+  <p class="fuente">cambio de entropía en un proceso reversible</p>
+  <p class="formula">ΔS<sub>total</sub> ≥ 0</p>
+  <p class="fuente">segunda ley: la entropía total de un sistema aislado no disminuye</p>
+  <p class="formula">ΔS = C ln(T<sub>f</sub>/T<sub>h</sub>) + C ln(T<sub>f</sub>/T<sub>c</sub>) &gt; 0</p>
+  <p class="fuente">dos cuerpos con la misma capacidad C que se igualan a T<sub>f</sub></p>
+  <p class="formula">E = m c²</p>
+  <p class="fuente">masa y energía son equivalentes</p>
+
+  <h2>Interactivo 1: el péndulo y la fricción</h2>
+  <div id="pendulo"></div>
+
+  <h2>Interactivo 2: calor entre dos cuerpos</h2>
+  <div id="entropia"></div>
+
+  <h2>Pregunta primero</h2>
+  <details><summary>Pregunta 1: Si la energía se conserva, ¿por qué una máquina necesita combustible continuamente?</summary>
+    <p>Porque la energía no se crea. Parte de la energía química se convierte en calor que no puede volver a ser trabajo útil en su totalidad. La energía total se conserva, pero la parte útil disminuye.</p></details>
+  <details><summary>Pregunta 2: En el péndulo, ¿a dónde va la energía que se pierde por fricción?</summary>
+    <p>A energía térmica del aire y del soporte. El sistema total (péndulo + entorno) conserva la energía; solo el péndulo la pierde.</p></details>
+  <details><summary>Pregunta 3: ¿Por qué el calor no pasa espontáneamente de frío a caliente si las leyes de Newton son reversibles?</summary>
+    <p>Porque la segunda ley no es una ley mecánica individual. Describe lo que ocurre en un sistema con muchísimas partículas: los estados de mayor entropía son los más probables. El proceso inverso sería posible en principio, pero es extraordinariamente improbable.</p></details>
+  <details><summary>Pregunta 4: ¿Qué quiere decir Einstein e Infeld cuando dicen que "el mundo de los fenómenos también debe ser inventado"?</summary>
+    <p>Que los conceptos físicos (como el campo) son creaciones libres del pensamiento, limitadas por la experiencia. No se descubren tal cual; se construyen para describir lo observado.</p></details>
+</main>
+<script src="../js/dibujos.js"></script>
+<script src="../js/m27.js"></script>
+<script>
+  Dibujos.penduloFriccion(document.getElementById('pendulo'));
+  Dibujos.entropia(document.getElementById('entropia'));
+</script>
+</body>
+</html>
