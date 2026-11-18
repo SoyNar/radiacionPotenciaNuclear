@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Módulo 25 · Modelos atómicos</title>
+<link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+<header><strong>Física conceptual · Parcial 3</strong>
+  <nav><a href="../index.html#estudio">← Todos los módulos</a></nav></header>
+<main>
+  <h1>Módulo 25: Modelos atómicos</h1>
+  <p class="fuente">Fuente: Física conceptual, cap. 17 (estructura de la materia) y unidad 11 (campo magnético y fuerza sobre cargas)</p>
+  <p>Thomson imaginó el átomo como una esfera positiva con electrones incrustados, el "buñuelo con pasas". Rutherford lo desechó: casi toda la masa está en un núcleo diminuto y positivo. Bohr corrigió el modelo nuclear con órbitas permitidas en las que el electrón no emite energía. Después se descubrieron el neutrón y los isótopos.</p>
+
+  <h2>Conceptos clave</h2>
+  <ul>
+    <li><b>Thomson (buñuelo con pasas):</b> esfera positiva con electrones dentro. Se descartó.</li>
+    <li><b>Rutherford:</b> con láminas de oro bombardeadas con partículas α, algunas se desviaban mucho y otras rebotaban. Eso implica un núcleo muy pequeño y pesado. El radio del núcleo es unas 100 000 veces menor que el del átomo: el átomo es casi vacío.</li>
+    <li><b>Problema del modelo nuclear:</b> según Maxwell, un electrón acelerado en órbita debería emitir energía y caer al núcleo. Eso no ocurre.</li>
+    <li><b>Bohr (1913):</b> solo hay órbitas permitidas, donde el momento angular es un múltiplo de h/2π. Al saltar de un nivel alto a uno bajo, el átomo emite un fotón cuya energía es la diferencia entre los dos niveles.</li>
+    <li><b>Espectro:</b> cada átomo emite un conjunto de longitudes de onda propio, que lo identifica. Por eso la espectroscopía es una herramienta de la química analítica.</li>
+    <li><b>Neutrón (Chadwick, 1932):</b> partícula sin carga y de masa similar a la del protón. Explica la masa del núcleo sin electrones dentro.</li>
+    <li><b>Isótopos:</b> mismo número de protones, distinto número de neutrones. El cloro tiene 75 % de ³⁵Cl y 25 % de ³⁷Cl, así que su masa promedio es 35,5 u.</li>
+    <li><b>Pauli y espín:</b> dos electrones no pueden tener el mismo estado. Por eso aparece el número cuántico de espín (±ħ/2 en electrones, protones y neutrones).</li>
+  </ul>
+
+  <h2>Fórmulas</h2>
+  <p class="formula">L = n h / 2π</p>
+  <p class="fuente">momento angular permitido en el modelo de Bohr (n = 1, 2, 3, …)</p>
+  <p class="formula">E = h f</p>
+  <p class="fuente">energía del fotón emitido: igual a la diferencia entre dos niveles</p>
+  <p class="formula">1/λ = R (1/n<sub>f</sub>² − 1/n<sub>i</sub>²)</p>
+  <p class="fuente">fórmula de Balmer-Rydberg, con R ≈ 1,097 × 10⁷ m⁻¹ (n<sub>f</sub> = 2 da la serie visible)</p>
+  <p class="formula">F = q v B sen θ</p>
+  <p class="fuente">fuerza magnética sobre una carga en movimiento; máxima si θ = 90°</p>
+
+  <h2>Interactivo 1: niveles de Bohr y espectro del hidrógeno</h2>
+  <div id="bohr"></div>
+
+  <h2>Interactivo 2: desviación de un haz de electrones</h2>
+  <div id="desv"></div>
+
+  <h2>Pregunta primero</h2>
+  <details><summary>Pregunta 1: Si casi todas las partículas α atraviesan la lámina de oro, ¿qué dice eso del átomo?</summary>
+    <p>Que la mayor parte del átomo es espacio vacío. Solo las partículas que pasan muy cerca de un núcleo pequeño y pesado se desvían mucho.</p></details>
+  <details><summary>Pregunta 2: ¿Por qué la fórmula de Balmer predice las líneas del hidrógeno si el modelo de Bohr es tan simple?</summary>
+    <p>Porque Bohr supuso que el electrón emite un fotón al bajar entre niveles permitidos. Al calcular la energía de esa diferencia, la longitud de onda queda exactamente como la fórmula empírica de Balmer.</p></details>
+  <details><summary>Pregunta 3: ¿Por qué el electrón no cae al núcleo en el modelo de Bohr?</summary>
+    <p>Porque en las órbitas permitidas no emite radiación. Esa es una suposición del modelo, no una consecuencia de la física clásica.</p></details>
+  <details><summary>Pregunta 4: ¿Por qué un haz de electrones se desvía con un imán pero un haz de luz no?</summary>
+    <p>Porque la fuerza magnética actúa sobre cargas en movimiento. Los electrones tienen carga, así que sienten la fuerza F = q v B sen θ. Los fotones no tienen carga.</p></details>
+</main>
+<script src="../js/dibujos.js"></script>
+<script>
+  Dibujos.bohr(document.getElementById('bohr'));
+  Dibujos.desviacion(document.getElementById('desv'));
+</script>
+</body>
+</html>

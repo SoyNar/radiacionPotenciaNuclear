@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Módulo 23 · Estructura de la materia</title>
+<link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+<header><strong>Física conceptual · Parcial 3</strong>
+  <nav><a href="../index.html#estudio">← Todos los módulos</a></nav></header>
+<main>
+  <h1>Módulo 23: Estructura de la materia</h1>
+  <p class="fuente">Fuente: Física conceptual, cap. 16 (materia y radiación): Lavoisier, Dalton, pila de Volta, electrólisis</p>
+  <p>Antes de conocer el átomo, la química ya tenía dos leyes: la materia no se crea ni se destruye (Lavoisier) y los elementos se combinan en proporciones de números enteros (Dalton). Eso sugiere que la materia está hecha de unidades discretas. La electricidad, con la pila de Volta y la electrólisis, permitió separar esos compuestos y descubrir nuevos elementos.</p>
+
+  <h2>Conceptos clave</h2>
+  <ul>
+    <li><b>Lavoisier:</b> en una reacción, la cantidad de materia es la misma antes y después. Se transforma, no desaparece.</li>
+    <li><b>Dalton:</b> si un elemento se combina con otro en distintas cantidades, las cantidades del segundo guardan proporciones enteras. El agua tiene H:O = 2:1 y el agua oxigenada 1:1.</li>
+    <li><b>Pila de Volta (1800):</b> apilar placas de metales distintos con un electrolito entre ellas genera una corriente sostenida. Al apilar más, los voltajes se suman.</li>
+    <li><b>Electrólisis:</b> con una pila y dos electrodos en un líquido, el compuesto se separa en sus elementos. Con el agua se obtienen dos volúmenes de hidrógeno por cada uno de oxígeno.</li>
+  </ul>
+
+  <h2>Interactivo 1: conservación y proporciones</h2>
+  <div id="conserva"></div>
+
+  <h2>Interactivo 2: la pila de Volta</h2>
+  <div id="pila"></div>
+
+  <h2>Interactivo 3: electrólisis del agua</h2>
+  <div id="electro"></div>
+
+  <h2>Fórmula</h2>
+  <p class="formula">2 H₂O → 2 H₂ + O₂</p>
+  <p class="fuente">electrólisis del agua: dos moléculas se separan en dos de hidrógeno y una de oxígeno</p>
+
+  <h2>Pregunta primero</h2>
+  <details><summary>Pregunta 1: Si 4 g de hidrógeno reaccionan con 32 g de oxígeno, ¿cuánta agua se forma? ¿Qué ley explica el resultado?</summary>
+    <p>Se forman 36 g de agua. Es la ley de Lavoisier: la masa total antes y después es la misma (4 + 32 = 36).</p></details>
+  <details><summary>Pregunta 2: ¿Por qué el hidrógeno y el oxígeno se obtienen en volúmenes de 2 a 1 en la electrólisis?</summary>
+    <p>Porque la molécula de agua tiene dos átomos de H y uno de O (H₂O). En la reacción se liberan dos moléculas de H₂ por cada molécula de O₂.</p></details>
+  <details><summary>Pregunta 3: ¿Por qué Volta necesitó apilar muchas placas para obtener una corriente apreciable?</summary>
+    <p>Cada par de placas produce una corriente muy débil. Al apilarlas, sus voltajes se suman y la intensidad total crece con el número de capas.</p></details>
+</main>
+<script src="../js/dibujos.js"></script>
+<script>
+  Dibujos.conservacion(document.getElementById('conserva'));
+  Dibujos.pilaVolta(document.getElementById('pila'));
+  Dibujos.electrolisis(document.getElementById('electro'));
+</script>
+</body>
+</html>

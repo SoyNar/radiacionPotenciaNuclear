@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Módulo 22 · Radiación</title>
+<link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+<header><strong>Física conceptual · Parcial 3</strong>
+  <nav><a href="../index.html#estudio">← Todos los módulos</a></nav></header>
+<main>
+  <h1>Módulo 22: Radiación</h1>
+  <p class="fuente">Fuente: diapositivas de la presentación + Consejo de Seguridad Nuclear (CSN), Universidad de Huelva y Universidad de Granada (web)</p>
+  <p>La radiación es energía o partículas emitidas por átomos. Si proviene de electrones y vibraciones es térmica; si proviene del núcleo inestable es nuclear. El número atómico Z define el elemento, y el núcleo se estabiliza emitiendo partículas alfa, beta o radiación gamma.</p>
+
+  <h2>Conceptos clave</h2>
+  <ul>
+    <li><b>Térmica:</b> viene de electrones y de la vibración de los átomos.</li>
+    <li><b>Nuclear:</b> viene del núcleo inestable. Es lo que estudiamos aquí.</li>
+    <li><b>Alfa (α):</b> núcleo de helio (2 protones y 2 neutrones). Es pesada, muy ionizante y poco penetrante: una hoja de papel o la piel la detienen. El peligro real aparece si se inhala o se ingiere.</li>
+    <li><b>Beta (β):</b> electrón (β⁻) o positrón (β⁺). Un neutrón se convierte en protón y emite un electrón, así que A no cambia y Z sube en 1. Penetración media: la frenan unos milímetros de aluminio o plomo.</li>
+    <li><b>Gamma (γ):</b> radiación electromagnética de alta energía, sin masa ni carga. Se emite cuando el núcleo pasa de un estado excitado a uno de menor energía. Es muy penetrante: la frenan plomo grueso u hormigón.</li>
+    <li>Ejemplo de la presentación: el cesio-137 (Z = 55) emite un electrón y se convierte en bario-137 (Z = 56); la masa atómica no cambia.</li>
+  </ul>
+
+  <h2>Interactivo: ¿qué detiene cada radiación?</h2>
+  <div id="penetra"></div>
+
+  <h2>Fórmulas</h2>
+  <p class="formula">A = protones + neutrones</p>
+  <p class="fuente">número másico; no cambia en una emisión β</p>
+  <p class="formula">Z = número de protones</p>
+  <p class="fuente">define el elemento; sube 1 en una emisión β⁻</p>
+
+  <h2>Pregunta primero</h2>
+  <details><summary>Pregunta 1: ¿Por qué la alfa, que es la más pesada y energética, es la menos penetrante?</summary>
+    <p>Por ser pesada y tener carga +2, interactúa muchísimo con los átomos del material y pierde su energía en distancias muy cortas.</p></details>
+  <details><summary>Pregunta 2: Si un material emite alfa y beta, ¿cuál es más peligrosa dentro del cuerpo?</summary>
+    <p>La alfa. Al ser muy ionizante deposita toda su energía en un tejido muy cercano. La beta penetra más, pero al ionizar menos hace menos daño local.</p></details>
+  <details><summary>Pregunta 3: El cesio-137 se convierte en bario-137 emitiendo un electrón. ¿Por qué cambia Z pero no A?</summary>
+    <p>Un neutrón del núcleo se transforma en un protón y un electrón (que sale). El total de nucleones no cambia, así que A se mantiene; como ganas un protón, Z sube en 1.</p></details>
+  <details><summary>Pregunta 4: ¿Por qué el papel no detiene la radiación gamma?</summary>
+    <p>Porque la gamma no tiene masa ni carga y casi no interactúa en un choque directo. Solo la frenan materiales densos (plomo, hormigón), donde tiene más probabilidad de perder energía.</p></details>
+</main>
+<script src="../js/dibujos.js"></script>
+<script>Dibujos.penetracion(document.getElementById('penetra'));</script>
+</body>
+</html>
