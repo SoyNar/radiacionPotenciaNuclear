@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía visual e interactiva para analizar funciones paso a paso.">
+  <title>Análisis de funciones · Guía interactiva</title>
+
+  <!-- Estilos compartidos del sitio: primero el general y luego el tema académico -->
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../css/tema.css">
+
+  <!-- Estilos exclusivos de esta página: siempre al final -->
+  <link rel="stylesheet" href="/css/guia-calculo.css">
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      chtml: { scale: 1.02 }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script defer src="/js/guia-calculo.js"></script>
+</head>
+<body>
+  <header class="page-header">
+    <strong>Matemáticas · Universidad</strong>
+    <a class="back-link" href="../calculo.html">← Volver a Cálculo</a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">Guía visual de estudio</span>
+      <h1>Análisis completo de una función</h1>
+      <p>Seis pasos para pasar de la expresión algebraica al bosquejo de la gráfica.</p>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Tu recorrido</span><strong id="progress-text">0 de 6 pasos</strong></div>
+        <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+      </div>
+    </section>
+
+    <nav class="step-nav" aria-label="Pasos de la guía">
+      <a href="#paso1">1. Dominio</a><a href="#paso2">2. Cortes</a><a href="#paso3">3. Asíntotas</a>
+      <a href="#paso4">4. Crecimiento</a><a href="#paso5">5. Concavidad</a><a href="#paso6">6. Gráfica</a>
+    </nav>
+
+    <section class="step-card" id="paso1">
+      <div class="step-head"><span class="number">01</span><div><span class="kicker">Primero</span><h2>Dominio</h2></div></div>
+      <p class="question">¿Qué valores puede tomar <b>x</b>?</p>
+      <div class="rule-grid">
+        <article class="rule"><span class="rule-icon">÷</span><div><b>Fracciones</b><p>El denominador nunca puede ser cero.</p><span class="math">$\frac{1}{x-3}$: excluye $x=3$.</span></div></article>
+        <article class="rule"><span class="rule-icon">√</span><div><b>Raíces pares</b><p>Lo que está dentro debe ser mayor o igual que cero.</p><span class="math">$\sqrt{x-2}$: exige $x\geq 2$.</span></div></article>
+      </div>
+      <details class="example" open>
+        <summary>Prueba: cambia el valor de a</summary>
+        <p class="formula-display">$$f(x)=\frac{5}{x-a}$$</p>
+        <label class="field">Valor de a <input id="dom-val" type="number" value="4" step="any"></label>
+        <div class="answer" id="dom-out" aria-live="polite"></div>
+      </details>
+      <label class="done"><input type="checkbox" class="step-check"> Ya entiendo el dominio</label>
+    </section>
+
+    <section class="step-card" id="paso2">
+      <div class="step-head"><span class="number">02</span><div><span class="kicker">Después</span><h2>Interceptos con los ejes</h2></div></div>
+      <p class="question">¿Dónde corta la gráfica los ejes X y Y?</p>
+      <div class="two-columns">
+        <article class="mini-card"><b>Eje Y</b><p>Reemplaza $x=0$.</p><span class="math">$ (0,f(0)) $</span></article>
+        <article class="mini-card"><b>Eje X</b><p>Iguala la función a cero y resuelve.</p><span class="math">$f(x)=0$</span></article>
+      </div>
+      <details class="example" open>
+        <summary>Prueba: cambia el valor de b</summary>
+        <p class="formula-display">$$f(x)=x^2-b$$</p>
+        <label class="field">Valor de b <input id="int-val" type="number" value="9" step="any"></label>
+        <div class="answer" id="int-out" aria-live="polite"></div>
+      </details>
+      <label class="done"><input type="checkbox" class="step-check"> Ya sé encontrar los interceptos</label>
+    </section>
+
+    <section class="step-card" id="paso3">
+      <div class="step-head"><span class="number">03</span><div><span class="kicker">Comportamiento en los extremos</span><h2>Asíntotas</h2></div></div>
+      <p class="question">¿A qué rectas se aproxima la gráfica?</p>
+      <div class="asymptote-grid">
+        <article class="asym-card"><span class="tag">AV</span><h3>Vertical</h3><p>La función crece o decrece sin límite al acercarse a $x=a$.</p><span class="math">$x=a$</span></article>
+        <article class="asym-card"><span class="tag">AH</span><h3>Horizontal</h3><p>La función se acerca a una altura fija cuando $x$ tiende a infinito.</p><span class="math">$y=L$</span></article>
+        <article class="asym-card"><span class="tag">AO</span><h3>Oblicua</h3><p>La función se aproxima a una recta inclinada.</p><span class="math">$y=mx+b$</span></article>
+      </div>
+
+      <div class="interactive-panel">
+        <h3>Explora los grados</h3>
+        <p>En una función racional, compara el grado de arriba con el de abajo.</p>
+        <div class="degree-controls">
+          <label class="field">Grado del numerador <input id="num-degree" type="number" min="0" max="12" value="2"></label>
+          <label class="field">Grado del denominador <input id="den-degree" type="number" min="0" max="12" value="2"></label>
+          <label class="field">Coeficiente principal arriba <input id="num-coeff" type="number" step="any" value="3"></label>
+          <label class="field">Coeficiente principal abajo <input id="den-coeff" type="number" step="any" value="2"></label>
+        </div>
+        <div class="answer answer-large" id="degree-result" aria-live="polite"></div>
+        <p class="hint">Si el grado de arriba supera al de abajo por 2 o más, haz la división de polinomios: puede aparecer una asíntota polinómica.</p>
+      </div>
+
+      <details class="example">
+        <summary>Ver cómo calcular la oblicua</summary>
+        <p>Si el grado del numerador supera exactamente en 1 al del denominador:</p>
+        <div class="formula-box">
+          <p><b>1. Pendiente</b></p>$$m=\lim_{x\to\infty}\frac{f(x)}{x}$$
+          <p><b>2. Intersección</b></p>$$b=\lim_{x\to\infty}[f(x)-mx]$$
+          <p><b>3. Recta</b></p>$$y=mx+b$$
+        </div>
+        <p class="hint">También puedes encontrarla haciendo la división de polinomios.</p>
+      </details>
+      <label class="done"><input type="checkbox" class="step-check"> Ya puedo identificar qué asíntota buscar</label>
+    </section>
+
+    <section class="step-card" id="paso4">
+      <div class="step-head"><span class="number">04</span><div><span class="kicker">Primera derivada</span><h2>Crecimiento, máximos y mínimos</h2></div></div>
+      <p class="question">¿En qué tramos sube o baja la función?</p>
+      <div class="two-columns">
+        <article class="mini-card positive"><b>$f'(x)>0$</b><p>La función es creciente ↗</p></article>
+        <article class="mini-card negative"><b>$f'(x)<0$</b><p>La función es decreciente ↘</p></article>
+      </div>
+      <div class="process">
+        <div><span>1</span> Calcula $f'(x)$.</div>
+        <div><span>2</span> Busca dónde $f'(x)=0$ o no existe, dentro del dominio.</div>
+        <div><span>3</span> Comprueba el signo antes y después de cada candidato.</div>
+      </div>
+      <div class="note-grid">
+        <p><b>De + a −</b><br>Máximo local ∩</p>
+        <p><b>De − a +</b><br>Mínimo local ∪</p>
+      </div>
+      <label class="done"><input type="checkbox" class="step-check"> Ya entiendo crecimiento y extremos</label>
+    </section>
+
+    <section class="step-card" id="paso5">
+      <div class="step-head"><span class="number">05</span><div><span class="kicker">Segunda derivada</span><h2>Concavidad e inflexión</h2></div></div>
+      <p class="question">¿Hacia dónde se curva la gráfica?</p>
+      <div class="two-columns">
+        <article class="mini-card positive"><b>$f''(x)>0$</b><p>Cóncava hacia arriba ∪</p></article>
+        <article class="mini-card negative"><b>$f''(x)<0$</b><p>Cóncava hacia abajo ∩</p></article>
+      </div>
+      <div class="process">
+        <div><span>1</span> Calcula $f''(x)$.</div>
+        <div><span>2</span> Encuentra candidatos donde sea cero o no exista.</div>
+        <div><span>3</span> Verifica que cambie la concavidad y que la función esté definida.</div>
+      </div>
+      <p class="callout">Un valor que hace $f''(x)=0$ no es automáticamente un punto de inflexión: debe haber cambio de concavidad.</p>
+      <label class="done"><input type="checkbox" class="step-check"> Ya puedo estudiar la concavidad</label>
+    </section>
+
+    <section class="step-card" id="paso6">
+      <div class="step-head"><span class="number">06</span><div><span class="kicker">Al final</span><h2>Construye el bosquejo</h2></div></div>
+      <p class="question">Une todas las pistas en el plano cartesiano.</p>
+      <div class="drawing-steps">
+        <div><span>1</span><b>Dominio</b><small>Marca dónde existe la función.</small></div>
+        <div><span>2</span><b>Asíntotas</b><small>Dibuja las rectas que encontraste.</small></div>
+        <div><span>3</span><b>Interceptos</b><small>Ubica los cortes con X y Y.</small></div>
+        <div><span>4</span><b>Extremos</b><small>Marca máximos y mínimos.</small></div>
+        <div><span>5</span><b>Concavidad</b><small>Señala inflexiones confirmadas.</small></div>
+        <div><span>6</span><b>Trazo</b><small>Dibuja respetando todas las pistas.</small></div>
+      </div>
+      <label class="done"><input type="checkbox" class="step-check"> Terminé el análisis de la función</label>
+    </section>
+
+    <section class="finish">
+      <h2>¡Buen trabajo!</h2>
+      <p>Cuando completes los seis pasos, tendrás una ruta ordenada para analizar y dibujar una función.</p>
+      <button id="reset-progress" type="button">Reiniciar progreso</button>
+    </section>
+  </main>
+  <footer class="page-footer">Material de apoyo · Cálculo diferencial</footer>
+</body>
+</html>
