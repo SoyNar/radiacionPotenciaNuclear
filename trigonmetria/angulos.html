@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tema 1 · Ángulos notables</title>
+<link rel="stylesheet" href="../css/estilo.css">
+<link rel="stylesheet" href="../css/tema.css">
+<link rel="stylesheet" href="../css/guia-calculo.css">
+<link rel="stylesheet" href="../css/angulos.css">
+
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <h1>Ángulos notables</h1>
+  <p class="intro">Arrastra el punto sobre la circunferencia, usa los botones o el deslizador. Observa qué cambia en cada línea.</p>
+
+  <section class="grid">
+    <div class="card">
+      <svg id="circ" viewBox="0 0 400 400" aria-label="Círculo unitario interactivo">
+        <line x1="20" y1="200" x2="380" y2="200" stroke="#9ca3af" stroke-width="1.5"/>
+        <line x1="200" y1="20" x2="200" y2="380" stroke="#9ca3af" stroke-width="1.5"/>
+        <circle cx="200" cy="200" r="150" fill="none" stroke="#d1d5db" stroke-width="2"/>
+        <text x="362" y="192" font-size="14" fill="#6b7280">x</text>
+        <text x="208" y="34" font-size="14" fill="#6b7280">y</text>
+        <text x="356" y="222" font-size="13" fill="#6b7280">0°</text>
+        <text x="206" y="62" font-size="13" fill="#6b7280">90°</text>
+        <text x="28" y="222" font-size="13" fill="#6b7280">180°</text>
+        <text x="206" y="372" font-size="13" fill="#6b7280">270°</text>
+        <g id="dyn"></g>
+      </svg>
+    </div>
+
+    <div class="card">
+      <div class="rad" id="rad"></div>
+      <div class="deg" id="deg"></div>
+      <div class="btns" id="btns"></div>
+      <input type="range" id="slider" min="0" max="360" value="0" step="1" aria-label="Ángulo">
+      <div class="vals">
+        <div class="val"><b>sen θ</b><span id="vs"></span></div>
+        <div class="val"><b>cos θ</b><span id="vc"></span></div>
+        <div class="val"><b>tan θ</b><span id="vt"></span></div>
+      </div>
+      <p class="intro leyenda">Línea azul punteada = <b class="txt-bl">sen</b> (altura). Línea verde punteada = <b class="txt-gr">cos</b> (distancia horizontal). Línea roja = <b class="txt-acc">tan</b>, cuando cos es positivo.</p>
+    </div>
+  </section>
+
+  <details class="pregunta">
+    <summary>Pregunta para pensar</summary>
+    <p>Lleva el punto a 45°. ¿Por qué sen y cos tienen el mismo valor? Ahora piensa: si el radio mide 1, ¿qué forma tiene el triángulo que se forma?</p>
+  </details>
+
+  <h2>Tabla de valores exactos</h2>
+  <p class="intro">Haz clic en una fila para ver ese ángulo en el círculo.</p>
+  <table>
+    <thead><tr><th>θ</th><th>radianes</th><th>sen θ</th><th>cos θ</th><th>tan θ</th></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <h2>¿De dónde salen esos valores?</h2>
+  <p class="intro">Para sen, toma √n / 2 con n = 0, 1, 2, 3, 4. Para cos, va al revés. Haz clic en un ángulo.</p>
+  <div class="sq" id="sq"></div>
+
+  <h2>Reto rápido</h2>
+  <div class="card">
+    <div class="q" id="q"></div>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb"></div>
+    <div class="nav"><button id="next" hidden>Siguiente →</button></div>
+    <div class="score" id="score">Aciertos: 0 de 0</div>
+  </div>
+</main>
+<script src="../js/nav.js"></script>
+<script src="../js/angulos.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descubriendo la física · Apuntes</title>
+<link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/tema.css">
+</head>
+<body data-seccion="estudio">
+<!-- Menú superior global -->
+<div id="site-header"></div>
+
+<main id="app">
+  <h1>Estudio · Descubriendo la física</h1>
+  <p>Descubre estos módulos. Cada módulo tiene su propia página con preguntas y dibujos interactivos.</p>
+  <div class="mod-list" id="lista-modulos"></div>
+</main>
+
+<!-- Scripts -->
+<script src="js/modulos.js"></script>
+<script src="js/nav.js"></script>
+<script>
+  // Renderiza los módulos de física usando la lista de modulos.js
+  const mods = window.MODULOS || [];
+  const container = document.getElementById('lista-modulos');
+  
+  container.innerHTML = mods.map(m => m.archivo
+    ? `<a href="${m.archivo}">Módulo ${m.num} · ${m.titulo}</a>`
+    : `<a class="pend-card">Módulo ${m.num} · ${m.titulo}<br><span class="pend">pendiente</span></a>`
+  ).join('');
+</script>
+</body>
+</html>

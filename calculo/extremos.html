@@ -1,32 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Guía visual e interactiva para analizar funciones paso a paso.">
-  <title>Análisis de funciones · Guía interactiva</title>
-
-  <!-- Estilos compartidos del sitio: primero el general y luego el tema académico -->
-  <link rel="stylesheet" href="../css/estilo.css">
-  <link rel="stylesheet" href="../css/tema.css">
-
-  <!-- Estilos exclusivos de esta página: siempre al final -->
-  <link rel="stylesheet" href="../css/guia-calculo.css">
-
-  <script>
-    window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
-      chtml: { scale: 1.02 }
-    };
-  </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  <script defer src="../js/guia-calculo.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cálculo Diferencial · Título de la página</title>
+<link rel="stylesheet" href="../css/estilo.css">
+<link rel="stylesheet" href="../css/tema.css">
+<link rel="stylesheet" href="../css/guia-calculo.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script defer src="../js/guia-calculo.js"></script>
 </head>
-<body>
-  <header class="page-header">
-    <strong>Matemáticas · Universidad</strong>
-    <a class="back-link" href="../calculo.html">← Volver a Cálculo</a>
-  </header>
+<body data-seccion="calculo">
+<div id="site-header"></div>
 
   <main class="container">
     <section class="hero">
@@ -168,4 +158,5 @@
   </main>
   <footer class="page-footer">Material de apoyo · Cálculo diferencial</footer>
 </body>
+<script src="../js/nav.js"></script>
 </html>

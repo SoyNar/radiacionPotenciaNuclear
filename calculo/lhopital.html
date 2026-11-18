@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Regla de L'Hôpital: cuándo usarla, formas indeterminadas y ejemplos paso a paso.">
+<title>Cálculo Diferencial · Regla de L'Hôpital</title>
+
+<link rel="stylesheet" href="../css/estilo.css">
+<link rel="stylesheet" href="../css/tema.css">
+<link rel="stylesheet" href="../css/guia-calculo.css">
+<link rel="stylesheet" href="../css/lhopital.css">
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+    chtml: { scale: 1.02 }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script defer src="../js/lhopital.js"></script>
+</head>
+<body data-seccion="calculo">
+
+<div id="site-header"></div>
+<div class="container">
+
+  <section class="hero">
+    <span class="eyebrow">Guía visual de estudio</span>
+    <h1>Regla de L'Hôpital</h1>
+    <p>Úsala solo cuando al evaluar el límite obtienes una forma indeterminada. Toca cada tarjeta para explorar.</p>
+  </section>
+
+  <nav class="step-nav" aria-label="Secciones">
+    <a href="#s1">1. Cuándo</a>
+    <a href="#s2">2. Formas</a>
+    <a href="#s3">3. Recordatorios</a>
+    <a href="#s4">4. Ejemplos</a>
+    <a href="#s5">5. Intuición</a>
+  </nav>
+
+  <!-- 1. CUÁNDO SE USA -->
+  <section class="step-card" id="s1">
+    <div class="step-head">
+      <span class="number">01</span>
+      <div><span class="kicker">Primero</span><h2>¿Cuándo se usa?</h2></div>
+    </div>
+    <p class="question">Evalúa el límite. Si obtienes una forma indeterminada, sigue estos pasos.</p>
+    <div class="flujo">
+      <button class="paso" data-p="0">Evalúa: $\frac{0}{0}$ o $\frac{\infty}{\infty}$</button>
+      <span class="flecha">→</span>
+      <button class="paso" data-p="1">Deriva arriba y abajo por separado</button>
+      <span class="flecha">→</span>
+      <button class="paso" data-p="2">¿Sigue indeterminado? Repite</button>
+    </div>
+    <div class="detalle" id="flujoTexto">Toca un paso para ver qué significa.</div>
+    <p class="aviso">⚠ <b>No es la regla del cociente.</b> El numerador y el denominador se derivan por separado.</p>
+  </section>
+
+  <!-- 2. FORMAS INDETERMINADAS -->
+  <section class="step-card" id="s2">
+    <div class="step-head">
+      <span class="number">02</span>
+      <div><span class="kicker">Identifica</span><h2>Toca la forma que te aparece</h2></div>
+    </div>
+    <div class="formas" id="formas"></div>
+    <div class="detalle" id="formaDetalle">Elige una forma indeterminada.</div>
+  </section>
+
+  <!-- 3. RECORDATORIOS -->
+  <section class="step-card" id="s3">
+    <div class="step-head">
+      <span class="number">03</span>
+      <div><span class="kicker">Antes de derivar</span><h2>Recordatorios</h2></div>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="detalle" id="recuerdo">Toca un recordatorio.</div>
+  </section>
+
+  <!-- 4. EJEMPLOS -->
+  <section class="step-card" id="s4">
+    <div class="step-head">
+      <span class="number">04</span>
+      <div><span class="kicker">Práctica</span><h2>Ejemplos paso a paso</h2></div>
+    </div>
+    <select id="ejSel" aria-label="Elegir ejemplo"></select>
+    <div id="ejPasos" class="pasos-ej"></div>
+    <div class="row">
+      <button id="ejSig">Siguiente paso →</button>
+      <button id="ejRes">Reiniciar</button>
+    </div>
+    <div class="respuesta" id="ejResp"></div>
+  </section>
+
+  <!-- 5. INTUICIÓN -->
+  <section class="step-card" id="s5">
+    <div class="step-head">
+      <span class="number">05</span>
+      <div><span class="kicker">Comprobación</span><h2>Mira cómo se acerca el límite</h2></div>
+    </div>
+    <div class="row">
+      <button class="modo sel" data-modo="ln">$\frac{\ln x}{x-1}$, $x\to 1$</button>
+      <button class="modo" data-modo="exp">$\frac{x}{e^x}$, $x\to \infty$</button>
+    </div>
+    <div id="tabla"></div>
+  </section>
+
+  <footer class="page-footer">Material de apoyo · Cálculo diferencial</footer>
+</div>
+<script src="../js/nav.js"></script>
+</body>
+</html>

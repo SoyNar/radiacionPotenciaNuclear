@@ -1,0 +1,56 @@
+/* nav.css · Menú global: solo iconos, con nombre al pasar el mouse */
+
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 8px 20px;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.site-header .site-title {
+  font: 600 14px/1.2 Inter, system-ui, sans-serif;
+  color: #374151; letter-spacing: .01em;
+}
+
+.site-header .site-nav { display: flex; gap: 4px; }
+
+.site-header .site-nav .site-link {
+  position: relative; display: grid; place-items: center;
+  width: 40px; height: 40px; border-radius: 10px;
+  background: transparent;
+  color: #374151; font-size: 18px; text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.site-header .site-nav .site-link i { color: inherit; line-height: 1; }
+
+.site-header .site-nav .site-link:hover,
+.site-header .site-nav .site-link:focus-visible {
+  background: #f3f4f6; color: #111827; outline: none;
+}
+.site-header .site-nav .site-link.on {
+  color: #c8432b; background: #fdf1ee;
+}
+
+/* Etiqueta emergente con el nombre de la materia */
+.site-header .site-nav .site-link::after {
+  content: attr(data-tip);
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translate(-50%, -4px);
+  padding: 5px 9px; border-radius: 6px;
+  background: #1f2937; color: #fff;
+  font: 500 12px/1 Inter, system-ui, sans-serif; white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transition: opacity .15s, transform .15s;
+}
+.site-header .site-nav .site-link:hover::after,
+.site-header .site-nav .site-link:focus-visible::after {
+  opacity: 1; transform: translate(-50%, 0);
+}
+
+@media (max-width: 560px) {
+  .site-header .site-title { display: none; }
+  .site-header { justify-content: center; }
+}

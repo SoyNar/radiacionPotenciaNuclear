@@ -2,8 +2,28 @@
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
 body{background:var(--paper);background-image:repeating-linear-gradient(to bottom,transparent 0 31px,#d9e3ef 31px 32px);color:var(--ink);font-family:'Caveat','Comic Sans MS',cursive;font-size:26px;overflow:hidden}
-#stage{position:absolute;top:0;left:0;right:0;bottom:60px}
-.scene{position:absolute;inset:3vh 5vw;opacity:0;transform:translateY(12px) rotate(-.3deg);transition:opacity .5s,transform .5s;pointer-events:none;overflow:auto;padding-bottom:20px}
+
+/* CENTRADO FLUIDO CON MARGEN SIMÉTRICO (SIN CAMBIAR EL ANCHO ORIGINAL) */
+#stage {
+  position: absolute;
+  top: 60px;
+  bottom: 60px;
+  left: 3vw;     /* Margen simétrico a la izquierda */
+  right: 3vw;    /* Margen simétrico a la derecha */
+  max-width: none; /* Quitamos restricciones duras para que ocupe todo su espacio natural */
+  margin: 0 auto;
+}
+
+.scene {
+  position: absolute;
+  inset: 3vh 2vw; /* Ajuste interno para que los elementos respiren cómodamente */
+  opacity: 0;
+  transform: translateY(12px) rotate(-.3deg);
+  transition: opacity .5s, transform .5s;
+  pointer-events: none;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
 .scene.on{opacity:1;transform:none;pointer-events:auto}
 h1,h2{margin:0 0 .3em;line-height:1.1;font-weight:700}
 h1{font-size:clamp(36px,7vw,62px)}

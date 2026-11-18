@@ -1,0 +1,61 @@
+:root{--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--acc:#c8432b;--bl:#2f6fb0;--gr:#3c8d5a;--bg:#f7f6f2}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);margin:0;line-height:1.6}
+header{background:#fff;border-bottom:1px solid var(--line);padding:12px 5vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header a{color:var(--muted);text-decoration:none;font-size:15px}
+header a:hover{color:var(--ink)}
+main{max-width:960px;margin:0 auto;padding:24px 20px 60px}
+h1{font-size:30px;margin:.2em 0 .1em}
+h2{font-size:19px;margin:0 0 12px}
+section{margin-top:20px}
+.intro{color:var(--muted);margin:0 0 10px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+button,select{font:inherit;font-weight:600;padding:8px 12px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;color:var(--ink)}
+button:hover,select:hover{border-color:var(--ink)}
+button.sel,button.activo{background:var(--ink);color:#fff;border-color:var(--ink)}
+button:disabled{opacity:.5;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+
+/* Avisos y detalles */
+.aviso{background:#fdecea;color:#8a2e1c;border-radius:8px;padding:10px 12px;margin:14px 0 0;font-size:15px}
+.detalle{background:#f9fafb;border-radius:10px;padding:14px 16px;margin-top:12px;min-height:48px}
+.detalle .mjx-chtml{font-size:110%}
+
+/* Flujo */
+.flujo{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.paso{flex:1;min-width:180px;text-align:center;padding:14px;font-size:15px}
+.paso.activo{background:var(--bl);border-color:var(--bl);color:#fff}
+.flecha{color:var(--muted);font-size:22px}
+
+/* Formas */
+.formas{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.formas button{font-size:18px;padding:16px 8px}
+.formas button.sel{background:var(--acc);border-color:var(--acc);color:#fff}
+
+/* Pasos metodológicos */
+.metodo{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.metodo li{background:#f9fafb;border-left:4px solid var(--bl);border-radius:6px;padding:10px 12px}
+.metodo li b{color:var(--bl);margin-right:6px}
+.tag-warn{display:inline-block;background:#fdecea;color:#8a2e1c;border-radius:6px;padding:2px 8px;font-size:14px;font-weight:600}
+
+/* Recordatorios */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border-radius:999px;padding:8px 14px;font-size:14px}
+.chips button.sel{background:var(--gr);border-color:var(--gr);color:#fff}
+.regla{font-size:18px;margin:4px 0 8px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow-x:auto}
+
+/* Ejemplos */
+select{width:100%;margin-top:4px}
+.pasos-ej{margin-top:12px;display:grid;gap:8px}
+.paso-ej{background:#f9fafb;border-left:4px solid var(--bl);border-radius:6px;padding:10px 12px;animation:aparece .35s ease}
+.paso-ej b{color:var(--bl)}
+.respuesta{margin-top:12px;font-weight:700;font-size:18px;color:var(--gr);min-height:26px}
+@keyframes aparece{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Tabla */
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:center}
+th{background:#f9fafb;color:var(--muted);font-size:14px}
+tr.ultima td{background:#e9f6ee;font-weight:700}
+
+@media(max-width:600px){.paso{min-width:100%}}

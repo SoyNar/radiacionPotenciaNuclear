@@ -1,0 +1,214 @@
+/* ESTILOS DE GEOMETRÍA VECTORIAL */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #22314a;
+  background-color: #fcfbf7;
+}
+
+.vectorial-container {
+  max-width: 1050px;
+  margin: 90px auto 40px auto;
+  padding: 0 25px;
+}
+
+.vector-hero {
+  margin-bottom: 25px;
+}
+
+.vector-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4.5vw, 42px);
+  color: #1a2638;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Tarjetas de temas con iconos */
+.topics-grid-compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+.icon-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-decoration: none;
+  color: #22314a;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.icon-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.icon-card i {
+  font-size: 22px;
+  color: #c8432b;
+  background: #fdf2f0;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.icon-card span {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a2638;
+}
+
+/* Título de sección */
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: #64748b;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* LABORATORIO INTERACTIVO (DISEÑO MEJORADO) */
+.interactive-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 35px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  align-items: center;
+}
+
+@media (max-width: 850px) {
+  .interactive-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.interactive-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  color: #1a2638;
+}
+
+.interactive-info .desc {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.vector-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 25px;
+  background: #f8fafc;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.badge-val {
+  background: #e2e8f0;
+  color: #1e293b;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.control-group input[type=range] {
+  width: 100%;
+  height: 6px;
+  background: #cbd5e1;
+  border-radius: 3px;
+  outline: none;
+  accent-color: #c8432b;
+  cursor: pointer;
+}
+
+/* Métricas / Resultados */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.metric-item {
+  background: #fdfbf7;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.m-label {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.m-value {
+  font-size: 20px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+.hl { color: #c8432b; }
+.bl { color: #2f6fb0; }
+
+/* Canvas Estilizado */
+.canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fafaf6;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+#vectorCanvas {
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
+}
+
+.canvas-caption {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 10px;
+  font-style: italic;
+}

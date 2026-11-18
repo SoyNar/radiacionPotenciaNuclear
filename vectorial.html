@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Geometría Vectorial · Apuntes Interactivos</title>
+
+<!-- Tipografías -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Hojas de estilo -->
+<link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="css/vectorial.css">
+
+<!-- Configuración de MathJax para fórmulas matemáticas perfectas -->
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body data-seccion="vectores">
+
+<!-- Menú superior global -->
+<div id="site-header"></div>
+
+<main class="vectorial-container">
+  
+  <!-- Cabecera de la sección -->
+  <header class="vector-hero">
+    <h1>Geometría Vectorial: Espacio y Cónicas</h1>
+    <p class="subtitle">Selecciona un módulo de estudio o experimenta en el laboratorio interactivo:</p>
+  </header>
+
+  <!-- Menú de tarjetas compactas con iconos -->
+  <section class="topics-grid-compact">
+    <a href="conicas.html" class="icon-card" title="Cónicas Generales">
+      <i class="bi bi-circle-square"></i>
+      <span>Cónicas</span>
+    </a>
+
+    <a href="hiperbola.html" class="icon-card" title="La Hipérbola">
+      <i class="bi bi-intersect"></i>
+      <span>Hipérbola</span>
+    </a>
+
+    <a href="distancia-recta.html" class="icon-card" title="Distancia a una Recta">
+      <i class="bi bi-code"></i>
+      <span>Punto a Recta</span>
+    </a>
+
+    <a href="distancia-plano.html" class="icon-card" title="Distancia a un Plano">
+      <i class="bi bi-layers"></i>
+      <span>Punto a Plano</span>
+    </a>
+  </section>
+
+  <!-- LABORATORIO INTERACTIVO MEJORADO -->
+  <div class="section-title">LABORATORIO INTERACTIVO DE VECTORES</div>
+
+  <div class="interactive-card">
+    <div class="interactive-info">
+      <h3>Visualizador de Magnitud y Dirección</h3>
+      <p class="desc">Ajusta las coordenadas cartesianas del vector para observar su representación geométrica y cálculo analítico en tiempo real.</p>
+      
+      <div class="vector-controls">
+        <div class="control-group">
+          <label>Componente $X$: <span class="badge-val" id="valX">3</span></label>
+          <input type="range" id="rangeX" min="-6" max="6" value="3">
+        </div>
+        <div class="control-group">
+          <label>Componente $Y$: <span class="badge-val" id="valY">4</span></label>
+          <input type="range" id="rangeY" min="-6" max="6" value="4">
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-item">
+          <span class="m-label">Magnitud $\|\vec{v}\|$</span>
+          <span class="m-value hl" id="magResult">5.00</span>
+        </div>
+        <div class="metric-item">
+          <span class="m-label">Ángulo $\theta$</span>
+          <span class="m-value bl" id="angResult">53.13°</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="canvas-container">
+      <canvas id="vectorCanvas" width="340" height="280"></canvas>
+      <div class="canvas-caption">Plano cartesiano interactivo 2D</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Scripts externos -->
+<script src="js/vectorial.js"></script>
+<script src="js/nav.js"></script>
+
+</body>
+</html>
