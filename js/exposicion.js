@@ -1,0 +1,327 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const scenes = document.querySelectorAll('.scene');
+  const total = scenes.length;
+  let idx = 0;
+
+  const fill = document.getElementById('fill');
+  const cnt = document.getElementById('cnt');
+
+  function updateScene(n) {
+    scenes[idx].classList.remove('on');
+    idx = (n + total) % total;
+    scenes[idx].classList.add('on');
+    if (fill) fill.style.width = ((idx + 1) / total) * 100 + '%';
+    if (cnt) cnt.textContent = `${idx + 1} / ${total}`;
+  }
+
+  // Navegación principal
+  const btnNext = document.getElementById('next');
+  const btnPrev = document.getElementById('prev');
+  if (btnNext) btnNext.onclick = () => updateScene(idx + 1);
+  if (btnPrev) btnPrev.onclick = () => updateScene(idx - 1);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') updateScene(idx + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') updateScene(idx - 1);
+  });
+
+  const btnFull = document.getElementById('full');
+  if (btnFull) {
+    btnFull.onclick = () => {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    };
+  }
+
+  const btnAnimar = document.getElementById('btnAnimar');
+  if (btnAnimar) {
+    btnAnimar.onclick = () => {
+      window.open('assets/videos/animacion_materia_radiacion_nuclear.mp4', '_blank');
+    };
+  }
+
+  // ==========================================
+  // 1. ESCENA 2: Radiación (¿qué la detiene?)
+  // ==========================================
+  const mbtns = document.querySelectorAll('.mbtn');
+  const ra = document.getElementById('r-a');
+  const rb = document.getElementById('r-b');
+  const rg = document.getElementById('r-g');
+  const bar = document.getElementById('bar');
+  const bartxt = document.getElementById('bartxt');
+  const res = document.getElementById('res');
+
+  const barreras = {
+    papel: { 
+      h: 165, y: 30, txt: 'papel', 
+      alpha: 20, beta: 100, gamma: 100, 
+      msg: '<span class="gr">Atraviesan: β, γ</span> · <span class="hl">Se detienen: α</span>' 
+    },
+    aluminio: { 
+      h: 100, y: 65, txt: 'aluminio', 
+      alpha: 20, beta: 60, gamma: 100, 
+      msg: '<span class="gr">Atraviesan: γ</span> · <span class="hl">Se detienen: α, β</span>' 
+    },
+    plomo: { 
+      h: 30, y: 95, txt: 'plomo', 
+      alpha: 20, beta: 30, gamma: 50, 
+      msg: '<span class="gr">Atraviesan: casi nada</span> · <span class="hl">Se detienen: α, β, γ (atenuados)</span>' 
+    }
+  };
+
+  mbtns.forEach(btn => {
+    btn.onclick = () => {
+      mbtns.forEach(b => b.classList.remove('sel'));
+      btn.classList.add('sel');
+      const m = btn.getAttribute('data-m');
+      const b = barreras[m];
+      if (bar) { bar.setAttribute('height', b.h); bar.setAttribute('y', b.y); }
+      if (bartxt) bartxt.textContent = b.txt;
+      if (ra) ra.setAttribute('d', `M 60 110 H ${60 + b.alpha}`);
+      if (rb) rb.setAttribute('d', `M 60 110 H ${60 + b.beta}`);
+      if (rg) rg.setAttribute('d', `M 60 110 H ${60 + b.gamma}`);
+      if (res) res.innerHTML = b.msg;
+    };
+  });
+  if (mbtns.length > 0) mbtns[0].click(); // Iniciar con papel seleccionado
+
+  // ==========================================
+  // 2. ESCENA 3: Fisión (Reacción en cadena)
+  // ==========================================
+  const fis = document.getElementById('fis');
+  const fire = document.getElementById('fire');
+  const fres = document.getElementById('fres');
+  const ftxt = document.getElementById('ftxt');
+  let gen = 0;
+
+  if (fire && fis) {
+    fire.onclick = () => {
+      gen++;
+      const count = Math.pow(2, gen);
+      let svgContent = `<text x="10" y="36" class="t">Gen ${gen}: ${count} neutrones</text>`;
+      for (let i = 0; i < Math.min(count, 32); i++) {
+        let cx = 60 + (i % 8) * 55;
+        let cy = 70 + Math.floor(i / 8) * 45;
+        svgContent += `<circle cx="${cx}" cy="${cy}" r="14" fill="#c8432b" fill-opacity=".3" stroke="#22314a" stroke-width="2"/>`;
+        svgContent += `<text x="${cx-6}" y="${cy+5}" class="t" style="font-size:16px">n</text>`;
+      }
+      fis.innerHTML = svgContent;
+      if (ftxt) ftxt.textContent = `Generación ${gen}: la reacción se multiplica exponencialmente.`;
+    };
+  }
+  if (fres && fis) {
+    fres.onclick = () => {
+      gen = 0;
+      fis.innerHTML = `<text x="10" y="36" class="t">n →</text>`;
+      if (ftxt) ftxt.textContent = 'Un neutrón parte un núcleo de U-235.';
+    };
+  }
+
+  // ==========================================
+  // 3. ESCENA 4: Bomba vs Reactor (Barras)
+  // ==========================================
+  const rod = document.getElementById('rod');
+  const rodv = document.getElementById('rodv');
+  const rod1 = document.getElementById('rod1');
+  const rod2 = document.getElementById('rod2');
+  const kt = document.getElementById('kt');
+  const ktxt = document.getElementById('ktxt');
+
+  function updateReactor(val) {
+    if (rodv) rodv.textContent = val + '%';
+    let h = (val / 100) * 110;
+    if (rod1) rod1.setAttribute('height', 10 + h);
+    if (rod2) rod2.setAttribute('height', 10 + h);
+    
+    let kval = (2.5 - (val / 50)).toFixed(2);
+    if (kt) kt.textContent = `k = ${kval}`;
+    
+    if (ktxt) {
+      if (val < 30) ktxt.textContent = '¡Peligro! k > 1 (Energía desbocada, comportamiento de bomba).';
+      else if (val > 70) ktxt.textContent = 'Reacción apagada o muy frenada (k < 1).';
+      else ktxt.textContent = 'Reacción estable y controlada (k ≈ 1).';
+    }
+  }
+  if (rod) {
+    rod.oninput = (e) => updateReactor(e.target.value);
+    updateReactor(rod.value);
+  }
+
+  // ==========================================
+  // 4. ESCENA 5: Reactor / Máquina de vapor (Apagado por defecto)
+  // ==========================================
+  const rOn = document.getElementById('rOn');
+  const vap = document.getElementById('vap');
+  const blades = document.getElementById('blades');
+  const bulbg = document.getElementById('bulbg');
+  let reactorEncendido = false;
+
+  // Estado inicial: Apagado
+  if (vap) vap.style.display = 'none';
+  if (blades) blades.classList.remove('go');
+  if (bulbg) bulbg.style.opacity = '0';
+
+  if (rOn) {
+    rOn.onclick = () => {
+      reactorEncendido = !reactorEncendido;
+      if (reactorEncendido) {
+        rOn.textContent = 'Apagar reactor';
+        rOn.style.background = 'var(--green)';
+        if (vap) vap.style.display = 'block';
+        if (blades) blades.classList.add('go');
+        if (bulbg) bulbg.style.opacity = '1';
+      } else {
+        rOn.textContent = 'Encender reactor';
+        rOn.style.background = 'var(--red)';
+        if (vap) vap.style.display = 'none';
+        if (blades) blades.classList.remove('go');
+        if (bulbg) bulbg.style.opacity = '0';
+      }
+    };
+  }
+
+  // ==========================================
+  // 5. ESCENA 6: Medicina
+  // ==========================================
+  const cards = document.querySelectorAll('#cards .card');
+  const medsvg = document.getElementById('medsvg');
+  const medtxt = document.getElementById('medtxt');
+
+  const medData = {
+    diag: { txt: 'Rayos X y TAC: permiten ver el interior del cuerpo mediante absorción diferencial de radiación.', svg: '<circle cx="210" cy="110" r="60" fill="none" stroke="#2f6fb0" stroke-width="4"/><text x="175" y="115" class="t">Rayos X</text>' },
+    rad: { txt: 'Radioterapia: usa haces de alta energía para destruir células tumorales localizadas.', svg: '<rect cx="150" y="80" width="120" height="60" rx="10" fill="none" stroke="#c8432b" stroke-width="4"/><text x="170" y="115" class="t">Tumor</text>' },
+    tir: { txt: 'Yodo-131: se acumula en la tiroides para tratar hipertiroidismo o cáncer de tiroides.', svg: '<path d="M180 90 Q210 130 240 90 Q250 150 210 160 Q170 150 180 90" fill="#3c8d5a" fill-opacity=".3" stroke="#3c8d5a" stroke-width="3"/><text x="195" y="125" class="t">I-131</text>' },
+    ester: { txt: 'Esterilización por radiación gamma: elimina gérmenes en material médico sin calor.', svg: '<rect x="160" y="70" width="100" height="80" fill="none" stroke="#22314a" stroke-width="3" stroke-dasharray="6"/><text x="185" y="115" class="t">Gamma</text>' }
+  };
+
+  cards.forEach(card => {
+    card.onclick = () => {
+      cards.forEach(c => c.classList.remove('sel'));
+      card.classList.add('sel');
+      const k = card.getAttribute('data-k');
+      const d = medData[k];
+      if (medsvg) medsvg.innerHTML = d.svg;
+      if (medtxt) medtxt.textContent = d.txt;
+    };
+  });
+  if (cards.length > 0) cards[0].click();
+
+  // ==========================================
+  // 6. ESCENA 7: Fórmulas (E = mc² y Eficiencia)
+  // ==========================================
+  const mass = document.getElementById('mass');
+  const massv = document.getElementById('massv');
+  const eout = document.getElementById('eout');
+  const util = document.getElementById('util');
+  const utilv = document.getElementById('utilv');
+  const effbar = document.getElementById('effbar');
+  const eff = document.getElementById('eff');
+
+  function updateFormulas() {
+    if (mass && massv && eout) {
+      let m = parseFloat(mass.value);
+      massv.textContent = m + ' g';
+      let joules = m * 9e13;
+      eout.textContent = `Equivalente en energía: ~${joules.toExponential(2)} Joules`;
+    }
+    if (util && utilv && effbar && eff) {
+      let u = parseInt(util.value);
+      utilv.textContent = u + ' J';
+      effbar.style.width = u + '%';
+      eff.textContent = u + '%';
+    }
+  }
+  if (mass) mass.oninput = updateFormulas;
+  if (util) util.oninput = updateFormulas;
+  updateFormulas();
+
+  // ==========================================
+  // 7. ESCENA 8: Repaso (Checks)
+  // ==========================================
+  const items = document.querySelectorAll('.item');
+  items.forEach(item => {
+    item.onclick = () => item.classList.toggle('on');
+  });
+
+  // ==========================================
+  // 8. ESCENA 9: Preguntas de parcial (Quiz)
+  // ==========================================
+  const quizContainer = document.getElementById('quiz');
+  if (quizContainer) {
+    const preguntas = [
+      {
+        q: "1. ¿Qué tipo de radiación es detenida por una simple hoja de papel?",
+        options: ["Partículas Alfa (α)", "Partículas Beta (β)", "Rayos Gamma (γ)"],
+        correct: 0,
+        exp: "Correcto: Las partículas alfa son grandes y pesadas, por lo que el papel las frena por completo."
+      },
+      {
+        q: "2. ¿Cuál es la función principal de las barras de control en un reactor nuclear?",
+        options: [
+          "Acelerar la fisión nuclear",
+          "Absorber neutrones para mantener la reacción estable (k ≈ 1)",
+          "Convertir el vapor en electricidad directamente"
+        ],
+        correct: 1,
+        exp: "Correcto: Absorben neutrones sobrantes para evitar que la reacción en cadena se desboque."
+      },
+      {
+        q: "3. ¿Por qué un reactor nuclear se considera una 'máquina de vapor'?",
+        options: [
+          "Porque no utiliza agua en su proceso",
+          "Porque la fisión genera calor para hervir agua, mover una turbina y un generador",
+          "Porque funciona con carbón enriquecido"
+        ],
+        correct: 1,
+        exp: "Correcto: El núcleo solo actúa como fuente de calor; el ciclo posterior de vapor, turbina y generador es idéntico al de una central térmica clásica."
+      }
+    ];
+
+    let quizHTML = '';
+    preguntas.forEach((p, pIdx) => {
+      quizHTML += `<div style="margin-bottom: 20px; background: #fff8; border: 2px dashed var(--ink); border-radius: 12px; padding: 14px;">
+        <p class="note" style="font-weight:700;">${p.q}</p>`;
+      p.options.forEach((opt, oIdx) => {
+        quizHTML += `<button class="btn q-btn" data-p="${pIdx}" data-o="${oIdx}" style="display:block; margin:6px 0; width:100%; text-align:left;">${opt}</button>`;
+      });
+      quizHTML += `<p class="note q-exp" id="exp-${pIdx}" style="margin-top:8px; font-style:italic; display:none;"></p></div>`;
+    });
+    quizContainer.innerHTML = quizHTML;
+
+    // Manejar clics en las opciones del quiz
+    const qButtons = quizContainer.querySelectorAll('.q-btn');
+    qButtons.forEach(btn => {
+      btn.onclick = () => {
+        const pIdx = btn.getAttribute('data-p');
+        const oIdx = parseInt(btn.getAttribute('data-o'));
+        const p = preguntas[pIdx];
+        const expBox = document.getElementById(`exp-${pIdx}`);
+
+        // Desactivar botones de esa pregunta
+        const siblings = quizContainer.querySelectorAll(`[data-p="${pIdx}"]`);
+        siblings.forEach(s => {
+          s.style.opacity = '0.6';
+          s.style.pointerEvents = 'none';
+        });
+
+        if (oIdx === p.correct) {
+          btn.style.background = 'var(--green)';
+          btn.style.color = '#fff';
+        } else {
+          btn.style.background = 'var(--red)';
+          btn.style.color = '#fff';
+          siblings[p.correct].style.background = 'var(--green)';
+          siblings[p.correct].style.color = '#fff';
+        }
+
+        if (expBox) {
+          expBox.style.display = 'block';
+          expBox.textContent = p.exp;
+        }
+      };
+    });
+  }
+
+  // Inicializar primera escena
+  updateScene(0);
+});
