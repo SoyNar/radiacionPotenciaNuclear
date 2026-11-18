@@ -7,8 +7,8 @@
       ? `<a href="${m.archivo}">Módulo ${m.num} · ${m.titulo}</a>`
       : `<a class="pend-card">Módulo ${m.num} · ${m.titulo}<br><span class="pend">pendiente</span></a>`
     ).join('');
-    return `<h1>Estudio · Módulos 17 a 27</h1>
-      <p>El parcial 3 cubre estos módulos. Cada módulo tiene su propia página con preguntas y dibujos interactivos.</p>
+    return `<h1>Estudio · Descrubiendo la física</h1>
+      <p>Descubre estos módulos. Cada módulo tiene su propia página con preguntas y dibujos interactivos.</p>
       <div class="mod-list">${cards}</div>`;
   }
 

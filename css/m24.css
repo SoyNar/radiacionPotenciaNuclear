@@ -1,0 +1,27 @@
+/* ==========================================
+   Estilos específicos del Módulo 24: Partículas de luz
+   ================================---------- */
+
+/* Línea de acento distintiva para este módulo (puedes usar un tono índigo o violeta para la luz) */
+main {
+  border-top: 4px solid #7c3aed; /* Tono violeta académico */
+}
+
+/* Contenedor general para el widget interactivo del disco de Airy */
+#airy {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin: 16px 0;
+}
+
+/* Ajustes visuales para la figura SVG del disco de Airy */
+.fig {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  display: block;
+  margin: 0.5em auto;
+}

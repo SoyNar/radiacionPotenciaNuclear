@@ -1,0 +1,4 @@
+/* Estilos propios del módulo 17 */
+.lbl{font-family:Caveat,cursive;font-size:24px;fill:#22314a}
+.hint{font-size:clamp(24px,4vw,30px);margin:.2em 0}
+.sign{font-size:36px;font-weight:700;color:#c8432b}

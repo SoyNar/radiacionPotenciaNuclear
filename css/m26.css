@@ -1,0 +1,27 @@
+/* ==========================================
+   Estilos específicos del Módulo 26: Potencia nuclear
+   ================================---------- */
+
+/* Línea de acento distintiva para este módulo (puedes usar un tono turquesa/cian o verde energético) */
+main {
+  border-top: 4px solid #0d9488;
+}
+
+/* Contenedores generales para los widgets interactivos del módulo */
+#efic, #gen {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin: 16px 0;
+}
+
+/* Ajustes visuales para las figuras SVG generadas por dibujos.js */
+.fig {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  display: block;
+  margin: 0.5em auto;
+}

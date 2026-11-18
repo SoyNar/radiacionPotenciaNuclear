@@ -1,0 +1,54 @@
+/* Estilos propios del módulo 23 */
+/* módulo 23: widgets */
+@keyframes sube{from{transform:translateY(0);opacity:1}to{transform:translateY(-120px);opacity:0}}
+.burbuja{animation:sube 2.4s linear forwards}
+.capa{transition:all .3s}
+
+/* ==========================================
+   Estilos específicos del Módulo 23: Estructura de la materia
+   ========================================== */
+
+/* Línea de acento distintiva para este módulo (puedes usar un tono neutro o azulado) */
+main {
+  border-top: 4px solid var(--beta);
+}
+
+/* Contenedores generales para los widgets interactivos del módulo */
+#conserva, #pila, #electro {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin: 16px 0;
+}
+
+/* Animación de burbujas para la electrólisis del agua */
+@keyframes sube {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
+
+.burbuja {
+  animation: sube 2.4s linear infinite; /* Puesto como infinite para que la animación fluya continuamente al interactuar */
+}
+
+/* Transición suave para las capas de la pila de Volta */
+.capa {
+  transition: all 0.3s ease;
+}
+
+/* Ajustes visuales para las figuras SVG generadas por dibujos.js en este módulo */
+.fig {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  display: block;
+  margin: 0.5em auto;
+}

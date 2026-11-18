@@ -1,0 +1,60 @@
+/* ==========================================
+   Estilos específicos del Módulo 22: Radiación
+   ================================---------- */
+
+/* Destacar la cabecera del módulo con un borde superior sutil de acento */
+main {
+  border-top: 4px solid var(--acc);
+}
+
+/* Tarjetas o contenedores especiales para los tipos de radiación */
+#tipos .row, #penetra .row {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+  margin-bottom: 12px;
+}
+
+/* Estilo para destacar las etiquetas de partículas alfa, beta y gamma */
+.badge-alfa {
+  background: rgba(200, 67, 43, 0.1);
+  color: var(--acc);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.badge-beta {
+  background: rgba(47, 111, 176, 0.1);
+  color: var(--beta);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.badge-gamma {
+  background: rgba(60, 141, 90, 0.1);
+  color: var(--gamma);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Animación sutil o transición para los widgets interactivos generados por dibujos.js */
+.fig svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Ajuste específico para el widget de penetración o cesio */
+#cesio, #equilibrio {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin: 16px 0;
+}

@@ -5,34 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Módulo 17 · Ondas electromagnéticas</title>
 <link rel="stylesheet" href="../css/estilo.css">
+<link rel="stylesheet" href="../css/tema.css">
+<link rel="stylesheet" href="../css/m17.css">
 </head>
 <body>
 <header><strong>Física conceptual · Parcial 3</strong>
   <nav><a href="../index.html#estudio">← Todos los módulos</a></nav></header>
 <main>
   <h1>Módulo 17: Ondas electromagnéticas</h1>
-  <p class="fuente">Fuente: Física conceptual, cap. 19 (ondas hercianas) y epílogo (campo y velocidad de la luz)</p>
-  <p>Una carga oscilando en una antena genera ondas electromagnéticas. Hertz las detectó alrededor de 1888 y confirmó la predicción de Maxwell: el campo electromagnético se propaga a la velocidad de la luz, así que la luz es una manifestación del campo.</p>
+  <p class="note">Toca, mueve y observa.</p>
 
-  <h2>Conceptos clave</h2>
-  <ul>
-    <li>La transmisión inalámbrica usa el principio de Hertz: oscilación de corriente en una antena y detección por resonancia en otra.</li>
-    <li>La intensidad decae con el cuadrado de la distancia, así que el alcance es limitado.</li>
-    <li>Las antenas parabólicas concentran la energía en una dirección, por eso llegan más lejos.</li>
-    <li>Maxwell mostró que las perturbaciones del campo viajan a unos 300 000 km/s, la velocidad de la luz.</li>
-  </ul>
+  <h2>1 · Corriente → campo</h2>
+  <div id="corriente"></div>
 
-  <h2>Fórmula</h2>
-  <p class="formula">I ∝ 1 / r²</p>
-  <p class="fuente">intensidad frente a la distancia r</p>
+  <h2>2 · Imán → corriente</h2>
+  <div id="induccion"></div>
 
-  <h2>Pregunta primero</h2>
-  <details><summary>Pregunta 1: Demuestra que la intensidad de una onda electromagnética decae como 1/r².</summary>
-    <p>La potencia emitida se reparte sobre una esfera de área 4πr². Si la potencia P es constante, I = P / (4πr²), así que I ∝ 1/r².</p></details>
-  <details><summary>Pregunta 2: Con ese resultado, ¿por qué se usan tanto las antenas parabólicas?</summary>
-    <p>Porque reflejan la onda y la concentran en un haz, de modo que la energía no se dispersa en todas direcciones y la señal llega más lejos.</p></details>
-  <details><summary>Pregunta 3: Si la velocidad de arrastre de los electrones en un cable es de centímetros por segundo, ¿cómo llega una señal telegráfica a miles de kilómetros tan rápido?</summary>
-    <p>La señal se propaga a través del campo, que viaja a casi la velocidad de la luz. Los electrones no tienen que recorrer toda la distancia para transmitir la señal.</p></details>
+  <h2>3 · El campo viaja</h2>
+  <div id="onda"></div>
+
+  <h2>Fórmulas</h2>
+  <p class="formula">B = μ₀ I / 2πr</p>
+  <p class="formula">V<sub>em</sub> = − dφ<sub>B</sub> / dt</p>
+  <p class="formula">c = λ f</p>
+  <p class="fuente">Fuentes: Física conceptual, unidad 11 (electromagnetismo) y epílogo (Maxwell y Hertz).</p>
 </main>
+<script src="../js/dibujos.js"></script>
+<script src="../js/m17.js"></script>
+<script>
+  Dibujos.corriente(document.getElementById('corriente'));
+  Dibujos.induccion(document.getElementById('induccion'));
+  Dibujos.onda(document.getElementById('onda'));
+</script>
 </body>
 </html>

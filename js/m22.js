@@ -69,3 +69,112 @@ Object.assign(window.Dibujos, {
     aplicar('papel');
   }
 });
+
+// Widget interactivo para explicar el desbalance protón/neutrón
+Object.assign(window.Dibujos, {
+  equilibrio(el) {
+    el.innerHTML = `
+      <div class="row">
+        <button class="btn" id="eq-mas-n">Añadir neutrones (Estable)</button>
+        <button class="btn" id="eq-mas-p">Exceso de protones (Inestable)</button>
+      </div>
+      <p class="msg" id="eq-msg">El núcleo necesita un pegamento adecuado (neutrones) para mantener unidos a los protones que se repelen.</p>`;
+    
+    el.querySelector('#eq-mas-n').addEventListener('click', () => {
+      el.querySelector('#eq-msg').textContent = '¡Buen balance! La fuerza nuclear fuerte domina y el núcleo está estable.';
+    });
+    el.querySelector('#eq-mas-p').addEventListener('click', () => {
+      el.querySelector('#eq-msg').textContent = '¡Peligro! Demasiados protones con carga positiva se repelen eléctricamente. El núcleo expulsa partículas para sanar.';
+    });
+  }
+});
+
+// Módulo 22: interacciones cortas (tocar → texto breve)
+Object.assign(window.Dibujos, {
+
+  tipos(el) {
+    const T = {
+      a: 'α · núcleo de helio (2p + 2n). Se frena con una hoja de papel.',
+      b: 'β · electrón (o positrón). Atraviesa el papel; se frena con aluminio.',
+      g: 'γ · onda electromagnética. Sin masa ni carga; se frena con plomo grueso.'
+    };
+    el.innerHTML = `
+      <div class="tiles">
+        <button class="tile a" data-k="a">α</button>
+        <button class="tile b" data-k="b">β</button>
+        <button class="tile g" data-k="g">γ</button>
+      </div>
+      <p class="msg">Toca una letra.</p>`;
+    el.querySelectorAll('.tile').forEach(b => b.addEventListener('click', () => {
+      el.querySelectorAll('.tile').forEach(x => x.classList.toggle('sel', x === b));
+      el.querySelector('.msg').textContent = T[b.dataset.k];
+    }));
+  },
+
+  naturaleza(el) {
+    const T = {
+      t: 'Viene de electrones y de la vibración de los átomos.',
+      n: 'Viene del núcleo inestable. Es la que estudiamos aquí.'
+    };
+    el.innerHTML = `
+      <div class="tiles">
+        <button class="btn nb" data-k="t">térmica</button>
+        <button class="btn nb" data-k="n">nuclear</button>
+      </div>
+      <p class="msg">¿De dónde sale?</p>`;
+    el.querySelectorAll('.nb').forEach(b => b.addEventListener('click', () => {
+      el.querySelectorAll('.nb').forEach(x => x.classList.toggle('sel', x === b));
+      el.querySelector('.msg').textContent = T[b.dataset.k];
+    }));
+  },
+
+  cesio(el) {
+    el.innerHTML = `
+      <div class="nucleo" id="ces-n"><span id="ces-t">Cs</span><small id="ces-z">Z = 55 · A = 137</small></div>
+      <div class="row"><button class="btn" id="ces-go">Emitir electrón (β⁻)</button><button class="btn" id="ces-rst">↺</button></div>
+      <p class="msg" id="ces-msg">Un neutrón del núcleo se convierte en protón y suelta un electrón.</p>`;
+    const n = el.querySelector('#ces-n');
+    el.querySelector('#ces-go').addEventListener('click', () => {
+      n.classList.add('ba');
+      el.querySelector('#ces-t').textContent = 'Ba';
+      el.querySelector('#ces-z').innerHTML = 'Z = 56 · A = 137';
+      el.querySelector('#ces-msg').innerHTML = 'Ahora es bario. <b>A no cambió</b>, Z subió 1.';
+    });
+    el.querySelector('#ces-rst').addEventListener('click', () => {
+      n.classList.remove('ba');
+      el.querySelector('#ces-t').textContent = 'Cs';
+      el.querySelector('#ces-z').innerHTML = 'Z = 55 · A = 137';
+      el.querySelector('#ces-msg').textContent = 'Un neutrón del núcleo se convierte en protón y suelta un electrón.';
+    });
+  }
+});
+
+// ¿Qué es la radiación? Un núcleo estable y uno inestable.
+Object.assign(window.Dibujos, {
+  que(el) {
+    el.innerHTML = `
+      <div class="atomo-box" id="que-box">
+        <div class="nucleo" id="que-n" style="width:110px;height:110px;font-size:24px">núcleo</div>
+      </div>
+      <div class="row">
+        <button class="btn" id="que-b">Hacer inestable</button>
+        <button class="btn" id="que-r">↺ Estable</button>
+      </div>
+      <p class="msg" id="que-m">Toca el botón. Todo átomo tiene un núcleo.</p>`;
+    const box = el.querySelector('#que-box'), n = el.querySelector('#que-n'), m = el.querySelector('#que-m');
+    el.querySelector('#que-b').addEventListener('click', () => {
+      m.textContent = 'Núcleo inestable: suelta energía y partículas para estabilizarse.';
+      const p = document.createElement('span');
+      p.className = 'particula';
+      p.style.left = '50%'; p.style.top = '50%';
+      box.appendChild(p);
+      setTimeout(() => p.remove(), 1300);
+      n.style.borderColor = 'var(--red)';
+      n.style.color = 'var(--red)';
+    });
+    el.querySelector('#que-r').addEventListener('click', () => {
+      n.style.borderColor = ''; n.style.color = '';
+      m.textContent = 'Núcleo estable: no emite nada.';
+    });
+  }
+});
