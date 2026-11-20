@@ -204,29 +204,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // ==========================================
-  // TOOLTIP al pasar el mouse (elementos con data-tip)
+   // ==========================================
+  // TOOLTIP: se revisa en cada movimiento del mouse
   // ==========================================
   const tip = document.getElementById('tip');
-  function moveTip(e) {
-    if (!tip) return;
-    tip.style.left = (e.clientX + 16) + 'px';
-    tip.style.top = (e.clientY + 16) + 'px';
+  if (tip) {
+    document.addEventListener('mousemove', (e) => {
+      const el = e.target.closest ? e.target.closest('[data-tip]') : null;
+      if (el && el.getAttribute('data-tip')) {
+        tip.textContent = el.getAttribute('data-tip');
+        tip.style.display = 'block';
+        tip.style.left = (e.clientX + 16) + 'px';
+        tip.style.top = (e.clientY + 16) + 'px';
+      } else {
+        tip.style.display = 'none';
+      }
+    });
   }
-  function showTip(text, e) {
-    if (!tip) return;
-    tip.textContent = text;
-    tip.style.display = 'block';
-    moveTip(e);
-  }
-  function hideTip() {
-    if (tip) tip.style.display = 'none';
-  }
-  document.querySelectorAll('[data-tip]').forEach(el => {
-    el.addEventListener('pointerenter', e => showTip(el.dataset.tip, e));
-    el.addEventListener('pointermove', moveTip);
-    el.addEventListener('pointerleave', hideTip);
-  });
 
   // ==========================================
   // ESCENA 7: Medicina
