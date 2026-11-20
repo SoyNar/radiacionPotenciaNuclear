@@ -2,32 +2,75 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cálculo Diferencial · Guía Completa</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="css/estilo.css">
 <link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="css/componentes.css">
 <link rel="stylesheet" href="css/calculo.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
-<body data-seccion="calculo" >
+<body data-seccion="calculo">
 <div id="site-header"></div>
-<main>
-  <h1>Cálculo Diferencial: Análisis de Funciones</h1>
-  <p class="note">Selecciona un tema para repasar conceptos, reglas y pasos clave:</p>
 
-  <div class="mod-list">
-    <a href="calculo/extremos.html">Valores Extremos y Análisis<br><span class="pend">dominio, derivadas, máximos y mínimos</span></a>
-    <a href="trigonmetria/angulos.html">Angulos notables<br><span class="pend">sen, cos, identidades</span></a>
-    <a href="calculo/lhopital.html"> Regla de L'Hôpital<br><span class="pend">indeterminaciones 0/0 y ∞/∞</span></a>
+<main class="container">
+  <a href="index.html" class="back-link"><i class="bi bi-house"></i> Inicio</a>
+
+  <header class="hero">
+    <h1>Cálculo Diferencial: Análisis de Funciones</h1>
+    <p class="subtitle">Elige un tema o experimenta con L'Hôpital:</p>
+  </header>
+
+  <section class="topics-grid-compact">
+    <a href="calculo/extremos.html" class="icon-card" title="Valores extremos">
+      <i class="bi bi-graph-up"></i><span>Extremos</span>
+    </a>
+    <a href="trigonmetria/angulos.html" class="icon-card" title="Ángulos notables">
+      <i class="bi bi-triangle"></i><span>Ángulos notables</span>
+    </a>
+    <a href="calculo/lhopital.html" class="icon-card" title="Regla de L'Hôpital">
+      <i class="bi bi-bounding-box-circles"></i><span>L'Hôpital</span>
+    </a>
+  </section>
+
+  <div class="section-title">LABORATORIO: ¿POR QUÉ FUNCIONA L'HÔPITAL?</div>
+  <div class="interactive-card">
+    <div>
+      <div class="control-group">
+        <label>Límite: <select id="selEj"></select></label>
+      </div>
+      <div class="control-group">
+        <label>Acercar $x$ a $0$: <span class="badge-val" id="valXc">x = 1</span></label>
+        <input type="range" id="rangeAprox" min="0" max="40" value="0">
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-item"><span class="m-label">$\frac{f(x)}{g(x)}$</span><span class="m-value" id="resCociente">–</span></div>
+        <div class="metric-item"><span class="m-label">$\frac{f'(x)}{g'(x)}$</span><span class="m-value" id="resDerivadas">–</span></div>
+        <div class="metric-item"><span class="m-label">Límite real</span><span class="m-value" id="resLimite">–</span></div>
+      </div>
+    </div>
+    <div>
+      <p class="formula" id="formulaEj"></p>
+      <p class="canvas-caption">Mientras $x\to 0$, los dos cocientes se acercan al mismo valor.</p>
+    </div>
   </div>
 
-  <h2>Guía rápida de L'Hôpital</h2>
-  <details>
-    <summary>¿Cuándo y cómo aplicarla?</summary>
-    <p>Aplica únicamente para límites con indeterminaciones del tipo <b>$\frac{0}{0}$</b> o <b>$\frac{\infty}{\infty}$</b>.</p>
-    <p class="formula">$\lim \frac{f(x)}{g(x)} = \lim \frac{f'(x)}{g'(x)}$</p>
-    <p class="fuente">Nota: Se deriva el numerador por separado y el denominador por separado, ¡no apliques la regla del cociente!</p>
+  <div class="section-title">GUÍA RÁPIDA</div>
+  <details class="interactive-card" style="display:block">
+    <summary>¿Cuándo y cómo aplicar L'Hôpital?</summary>
+    <p>Solo con indeterminaciones <b>$\frac{0}{0}$</b> o <b>$\frac{\infty}{\infty}$</b>.</p>
+    <p class="formula">$$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}$$</p>
+    <p class="fuente">Se deriva el numerador y el denominador por separado. No uses la regla del cociente.</p>
   </details>
 </main>
+
+<script src="js/calculo.js"></script>
 <script src="js/nav.js"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cnt) cnt.textContent = `${idx + 1} / ${total}`;
   }
 
-  // Navegación principal
+  // Navegación
   const btnNext = document.getElementById('next');
   const btnPrev = document.getElementById('prev');
   if (btnNext) btnNext.onclick = () => updateScene(idx + 1);
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 1. ESCENA 2: Radiación (¿qué la detiene?)
+  // ESCENA 2: Radiación
   // ==========================================
   const mbtns = document.querySelectorAll('.mbtn');
   const ra = document.getElementById('r-a');
@@ -52,20 +52,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const res = document.getElementById('res');
 
   const barreras = {
-    papel: { 
-      h: 165, y: 30, txt: 'papel', 
-      alpha: 20, beta: 100, gamma: 100, 
-      msg: '<span class="gr">Atraviesan: β, γ</span> · <span class="hl">Se detienen: α</span>' 
+    papel: {
+      h: 165, y: 30, txt: 'papel',
+      alpha: 20, beta: 100, gamma: 100,
+      msg: '<span class="gr">Atraviesan: β, γ</span> · <span class="hl">Se detienen: α</span>'
     },
-    aluminio: { 
-      h: 100, y: 65, txt: 'aluminio', 
-      alpha: 20, beta: 60, gamma: 100, 
-      msg: '<span class="gr">Atraviesan: γ</span> · <span class="hl">Se detienen: α, β</span>' 
+    aluminio: {
+      h: 100, y: 65, txt: 'aluminio',
+      alpha: 20, beta: 60, gamma: 100,
+      msg: '<span class="gr">Atraviesan: γ</span> · <span class="hl">Se detienen: α, β</span>'
     },
-    plomo: { 
-      h: 30, y: 95, txt: 'plomo', 
-      alpha: 20, beta: 30, gamma: 50, 
-      msg: '<span class="gr">Atraviesan: casi nada</span> · <span class="hl">Se detienen: α, β, γ (atenuados)</span>' 
+    plomo: {
+      h: 30, y: 95, txt: 'plomo',
+      alpha: 20, beta: 30, gamma: 50,
+      msg: '<span class="gr">Atraviesan: solo una fracción de γ</span> · <span class="hl">Se detienen: α, β (γ se atenúa, no se elimina)</span>'
     }
   };
 
@@ -73,8 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.onclick = () => {
       mbtns.forEach(b => b.classList.remove('sel'));
       btn.classList.add('sel');
-      const m = btn.getAttribute('data-m');
-      const b = barreras[m];
+      const b = barreras[btn.getAttribute('data-m')];
       if (bar) { bar.setAttribute('height', b.h); bar.setAttribute('y', b.y); }
       if (bartxt) bartxt.textContent = b.txt;
       if (ra) ra.setAttribute('d', `M 60 110 H ${60 + b.alpha}`);
@@ -83,42 +82,66 @@ document.addEventListener('DOMContentLoaded', () => {
       if (res) res.innerHTML = b.msg;
     };
   });
-  if (mbtns.length > 0) mbtns[0].click(); // Iniciar con papel seleccionado
+  if (mbtns.length > 0) mbtns[0].click();
 
   // ==========================================
-  // 2. ESCENA 3: Fisión (Reacción en cadena)
+  // ESCENA 3: Fisión (una sola declaración)
   // ==========================================
   const fis = document.getElementById('fis');
   const fire = document.getElementById('fire');
   const fres = document.getElementById('fres');
   const ftxt = document.getElementById('ftxt');
+  const MAX_DRAW = 32;
   let gen = 0;
+  let current = 1;
 
-  if (fire && fis) {
+  // Cada neutrón parte un núcleo y libera 2 o 3 neutrones
+  function fissionsFrom(n) {
+    if (n > 200000) return Math.round(n * 2.5);
+    let total = 0;
+    for (let i = 0; i < n; i++) total += Math.random() < 0.5 ? 2 : 3;
+    return total;
+  }
+
+  function drawFission() {
+    if (!fis) return;
+    const plural = current === 1 ? '' : 'es';
+    let s = `<text x="10" y="24" class="t">Generación ${gen}: ${current.toLocaleString('es')} neutrón${plural}</text>`;
+    const shown = Math.min(current, MAX_DRAW);
+    for (let i = 0; i < shown; i++) {
+      const cx = 40 + (i % 8) * 62;
+      const cy = 60 + Math.floor(i / 8) * 36;
+      s += `<circle cx="${cx}" cy="${cy}" r="12" fill="#c8432b" fill-opacity=".3" stroke="#22314a" stroke-width="2"/>`;
+      s += `<text x="${cx - 4}" y="${cy + 5}" class="t" style="font-size:15px">n</text>`;
+    }
+    if (current > MAX_DRAW) {
+      s += `<text x="40" y="165" class="t">… +${(current - MAX_DRAW).toLocaleString('es')} neutrones más</text>`;
+    }
+    fis.innerHTML = s;
+  }
+
+  if (fire) {
     fire.onclick = () => {
+      const prev = current;
+      current = fissionsFrom(current);
       gen++;
-      const count = Math.pow(2, gen);
-      let svgContent = `<text x="10" y="36" class="t">Gen ${gen}: ${count} neutrones</text>`;
-      for (let i = 0; i < Math.min(count, 32); i++) {
-        let cx = 60 + (i % 8) * 55;
-        let cy = 70 + Math.floor(i / 8) * 45;
-        svgContent += `<circle cx="${cx}" cy="${cy}" r="14" fill="#c8432b" fill-opacity=".3" stroke="#22314a" stroke-width="2"/>`;
-        svgContent += `<text x="${cx-6}" y="${cy+5}" class="t" style="font-size:16px">n</text>`;
-      }
-      fis.innerHTML = svgContent;
-      if (ftxt) ftxt.textContent = `Generación ${gen}: la reacción se multiplica exponencialmente.`;
+      drawFission();
+      const k = current / prev;
+      if (ftxt) ftxt.textContent = `Cada neutrón partió un núcleo y liberó 2 o 3 nuevos. k ≈ ${k.toFixed(2)} en esta generación.`;
     };
   }
-  if (fres && fis) {
+  if (fres) {
     fres.onclick = () => {
       gen = 0;
-      fis.innerHTML = `<text x="10" y="36" class="t">n →</text>`;
-      if (ftxt) ftxt.textContent = 'Un neutrón parte un núcleo de U-235.';
+      current = 1;
+      drawFission();
+      if (ftxt) ftxt.textContent = 'Un neutrón entra a un núcleo de U-235 e inicia la primera fisión.';
     };
   }
+  drawFission();
 
   // ==========================================
-  // 3. ESCENA 4: Bomba vs Reactor (Barras)
+  // ESCENA 5: Bomba vs reactor (barras de control)
   // ==========================================
   const rod = document.getElementById('rod');
   const rodv = document.getElementById('rodv');
@@ -128,18 +151,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const ktxt = document.getElementById('ktxt');
 
   function updateReactor(val) {
-    if (rodv) rodv.textContent = val + '%';
-    let h = (val / 100) * 110;
+    const v = Number(val);
+    if (rodv) rodv.textContent = v + '%';
+    const h = (v / 100) * 110;
     if (rod1) rod1.setAttribute('height', 10 + h);
     if (rod2) rod2.setAttribute('height', 10 + h);
-    
-    let kval = (2.5 - (val / 50)).toFixed(2);
-    if (kt) kt.textContent = `k = ${kval}`;
-    
+
+    // k baja linealmente al insertar barras
+    const k = Math.max(0, 2.5 * (1 - v / 100));
+    if (kt) kt.textContent = `k = ${k.toFixed(2)}`;
+
     if (ktxt) {
-      if (val < 30) ktxt.textContent = '¡Peligro! k > 1 (Energía desbocada, comportamiento de bomba).';
-      else if (val > 70) ktxt.textContent = 'Reacción apagada o muy frenada (k < 1).';
-      else ktxt.textContent = 'Reacción estable y controlada (k ≈ 1).';
+      if (k > 1.02) ktxt.textContent = 'Supercrítico (k > 1): la potencia crece. En un reactor el crecimiento se controla; en una bomba es casi instantáneo.';
+      else if (k >= 0.98) ktxt.textContent = 'Crítico (k ≈ 1): la potencia se mantiene constante. Es el estado normal de operación.';
+      else ktxt.textContent = 'Subcrítico (k < 1): la reacción se apaga con el tiempo.';
     }
   }
   if (rod) {
@@ -148,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 4. ESCENA 5: Reactor / Máquina de vapor (Apagado por defecto)
+  // ESCENA 6: Reactor como máquina de vapor
   // ==========================================
   const rOn = document.getElementById('rOn');
   const vap = document.getElementById('vap');
@@ -156,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const bulbg = document.getElementById('bulbg');
   let reactorEncendido = false;
 
-  // Estado inicial: Apagado
   if (vap) vap.style.display = 'none';
   if (blades) blades.classList.remove('go');
   if (bulbg) bulbg.style.opacity = '0';
@@ -181,7 +205,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 5. ESCENA 6: Medicina
+  // TOOLTIP al pasar el mouse (elementos con data-tip)
+  // ==========================================
+  const tip = document.getElementById('tip');
+  function moveTip(e) {
+    if (!tip) return;
+    tip.style.left = (e.clientX + 16) + 'px';
+    tip.style.top = (e.clientY + 16) + 'px';
+  }
+  function showTip(text, e) {
+    if (!tip) return;
+    tip.textContent = text;
+    tip.style.display = 'block';
+    moveTip(e);
+  }
+  function hideTip() {
+    if (tip) tip.style.display = 'none';
+  }
+  document.querySelectorAll('[data-tip]').forEach(el => {
+    el.addEventListener('pointerenter', e => showTip(el.dataset.tip, e));
+    el.addEventListener('pointermove', moveTip);
+    el.addEventListener('pointerleave', hideTip);
+  });
+
+  // ==========================================
+  // ESCENA 7: Medicina
   // ==========================================
   const cards = document.querySelectorAll('#cards .card');
   const medsvg = document.getElementById('medsvg');
@@ -189,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const medData = {
     diag: { txt: 'Rayos X y TAC: permiten ver el interior del cuerpo mediante absorción diferencial de radiación.', svg: '<circle cx="210" cy="110" r="60" fill="none" stroke="#2f6fb0" stroke-width="4"/><text x="175" y="115" class="t">Rayos X</text>' },
-    rad: { txt: 'Radioterapia: usa haces de alta energía para destruir células tumorales localizadas.', svg: '<rect cx="150" y="80" width="120" height="60" rx="10" fill="none" stroke="#c8432b" stroke-width="4"/><text x="170" y="115" class="t">Tumor</text>' },
+    rad: { txt: 'Radioterapia: usa haces de alta energía para destruir células tumorales localizadas.', svg: '<rect x="150" y="80" width="120" height="60" rx="10" fill="none" stroke="#c8432b" stroke-width="4"/><text x="170" y="115" class="t">Tumor</text>' },
     tir: { txt: 'Yodo-131: se acumula en la tiroides para tratar hipertiroidismo o cáncer de tiroides.', svg: '<path d="M180 90 Q210 130 240 90 Q250 150 210 160 Q170 150 180 90" fill="#3c8d5a" fill-opacity=".3" stroke="#3c8d5a" stroke-width="3"/><text x="195" y="125" class="t">I-131</text>' },
     ester: { txt: 'Esterilización por radiación gamma: elimina gérmenes en material médico sin calor.', svg: '<rect x="160" y="70" width="100" height="80" fill="none" stroke="#22314a" stroke-width="3" stroke-dasharray="6"/><text x="185" y="115" class="t">Gamma</text>' }
   };
@@ -198,8 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.onclick = () => {
       cards.forEach(c => c.classList.remove('sel'));
       card.classList.add('sel');
-      const k = card.getAttribute('data-k');
-      const d = medData[k];
+      const d = medData[card.getAttribute('data-k')];
       if (medsvg) medsvg.innerHTML = d.svg;
       if (medtxt) medtxt.textContent = d.txt;
     };
@@ -207,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (cards.length > 0) cards[0].click();
 
   // ==========================================
-  // 6. ESCENA 7: Fórmulas (E = mc² y Eficiencia)
+  // ESCENA 8: Fórmulas
   // ==========================================
   const mass = document.getElementById('mass');
   const massv = document.getElementById('massv');
@@ -219,13 +266,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateFormulas() {
     if (mass && massv && eout) {
-      let m = parseFloat(mass.value);
+      const m = parseFloat(mass.value);
       massv.textContent = m + ' g';
-      let joules = m * 9e13;
-      eout.textContent = `Equivalente en energía: ~${joules.toExponential(2)} Joules`;
+      eout.textContent = `Equivalente en energía: ~${(m * 9e13).toExponential(2)} Joules`;
     }
     if (util && utilv && effbar && eff) {
-      let u = parseInt(util.value);
+      const u = parseInt(util.value);
       utilv.textContent = u + ' J';
       effbar.style.width = u + '%';
       eff.textContent = u + '%';
@@ -236,15 +282,14 @@ document.addEventListener('DOMContentLoaded', () => {
   updateFormulas();
 
   // ==========================================
-  // 7. ESCENA 8: Repaso (Checks)
+  // ESCENA 9: Repaso
   // ==========================================
-  const items = document.querySelectorAll('.item');
-  items.forEach(item => {
+  document.querySelectorAll('.item').forEach(item => {
     item.onclick = () => item.classList.toggle('on');
   });
 
   // ==========================================
-  // 8. ESCENA 9: Preguntas de parcial (Quiz)
+  // ESCENA 10: Preguntas tipo parcial
   // ==========================================
   const quizContainer = document.getElementById('quiz');
   if (quizContainer) {
@@ -253,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         q: "1. ¿Qué tipo de radiación es detenida por una simple hoja de papel?",
         options: ["Partículas Alfa (α)", "Partículas Beta (β)", "Rayos Gamma (γ)"],
         correct: 0,
-        exp: "Correcto: Las partículas alfa son grandes y pesadas, por lo que el papel las frena por completo."
+        exp: "La respuesta correcta es alfa: son núcleos de helio, grandes y pesados, y el papel los frena por completo."
       },
       {
         q: "2. ¿Cuál es la función principal de las barras de control en un reactor nuclear?",
@@ -263,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
           "Convertir el vapor en electricidad directamente"
         ],
         correct: 1,
-        exp: "Correcto: Absorben neutrones sobrantes para evitar que la reacción en cadena se desboque."
+        exp: "La respuesta correcta es absorber neutrones: así se evita que la reacción en cadena se desboque."
       },
       {
         q: "3. ¿Por qué un reactor nuclear se considera una 'máquina de vapor'?",
@@ -273,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
           "Porque funciona con carbón enriquecido"
         ],
         correct: 1,
-        exp: "Correcto: El núcleo solo actúa como fuente de calor; el ciclo posterior de vapor, turbina y generador es idéntico al de una central térmica clásica."
+        exp: "La respuesta correcta es la del calor que hierve agua: el núcleo solo es la fuente de calor, y el resto del ciclo es igual al de una central térmica clásica."
       }
     ];
 
@@ -288,17 +333,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     quizContainer.innerHTML = quizHTML;
 
-    // Manejar clics en las opciones del quiz
-    const qButtons = quizContainer.querySelectorAll('.q-btn');
-    qButtons.forEach(btn => {
+    quizContainer.querySelectorAll('.q-btn').forEach(btn => {
       btn.onclick = () => {
         const pIdx = btn.getAttribute('data-p');
         const oIdx = parseInt(btn.getAttribute('data-o'));
         const p = preguntas[pIdx];
         const expBox = document.getElementById(`exp-${pIdx}`);
-
-        // Desactivar botones de esa pregunta
         const siblings = quizContainer.querySelectorAll(`[data-p="${pIdx}"]`);
+
         siblings.forEach(s => {
           s.style.opacity = '0.6';
           s.style.pointerEvents = 'none';
@@ -322,6 +364,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Inicializar primera escena
+  // Inicializar
   updateScene(0);
-});
+}); 

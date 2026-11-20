@@ -2,3 +2,12 @@
 .lbl{font-family:Caveat,cursive;font-size:24px;fill:#22314a}
 .hint{font-size:clamp(24px,4vw,30px);margin:.2em 0}
 .sign{font-size:36px;font-weight:700;color:#c8432b}
+
+.home-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; margin-bottom: .6rem;
+  border-radius: 10px; text-decoration: none;
+  color: var(--accent, #6d5dfc);
+  background: rgba(128,128,128,.12);
+}
+.home-link:hover { background: rgba(109,93,252,.15); }

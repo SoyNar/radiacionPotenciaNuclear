@@ -82,3 +82,22 @@ input[type=range]{width:min(320px,80%);accent-color:var(--red)}
   border-radius: 12px; padding: 10px 18px; font-size: 20px;
   cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
+
+#tip{position:fixed;display:none;pointer-events:none;z-index:100000;background:var(--ink);color:#fff;padding:8px 14px;border-radius:12px;font-size:22px;max-width:280px;line-height:1.25;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.hov{cursor:pointer;transition:opacity .2s}
+.hov:hover{opacity:.75}
+
+/* Sin barra de scroll visible en las escenas */
+.scene{overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+.scene::-webkit-scrollbar{display:none}
+
+/* Números de las ecuaciones legibles */
+.eq sup,.eq sub{font-size:.65em;line-height:0}
+.eq sup{vertical-align:.7em}
+.eq sub{vertical-align:-.3em}
+
+/* SVG de fisión compacto */
+.fis-svg{width:100%;max-width:560px;height:auto;display:block;margin:.2em 0}
+
+/* Recuadro de k dentro de la pantalla */
+.kbox{font-size:24px;line-height:1.3;border:2px dashed var(--ink);border-radius:12px;padding:8px 12px;max-width:100%;box-sizing:border-box}

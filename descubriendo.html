@@ -2,32 +2,58 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Descubriendo la física · Apuntes</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="css/estilo.css">
 <link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/descubriendo.css">
 </head>
 <body data-seccion="estudio">
-<!-- Menú superior global -->
 <div id="site-header"></div>
 
-<main id="app">
-  <h1>Estudio · Descubriendo la física</h1>
-  <p>Descubre estos módulos. Cada módulo tiene su propia página con preguntas y dibujos interactivos.</p>
-  <div class="mod-list" id="lista-modulos"></div>
+<main id="app" class="container">
+  <a href="index.html" class="back-link"><i class="bi bi-house"></i> Inicio</a>
+
+  <header class="hero">
+    <h1>Estudio · Descubriendo la física</h1>
+    <p class="subtitle">Elige un módulo o experimenta con el laboratorio:</p>
+  </header>
+
+  <section class="topics-grid-compact" id="lista-modulos"></section>
+
+  <div class="section-title">LABORATORIO: MOVIMIENTO ACELERADO</div>
+  <div class="interactive-card">
+    <div>
+      <div class="control-group">
+        <label>Velocidad inicial: <span class="badge-val" id="valV0">2</span> m/s</label>
+        <input type="range" id="rangeV0" min="0" max="10" value="2">
+      </div>
+      <div class="control-group">
+        <label>Aceleración: <span class="badge-val" id="valA">1</span> m/s²</label>
+        <input type="range" id="rangeA" min="-3" max="5" step="0.5" value="1">
+      </div>
+    <button id="btnLanzar" class="icon-card btn-wide"><i class="bi bi-play-fill"></i><span>Lanzar</span></button>      <div class="metrics-grid">
+        <div class="metric-item"><span class="m-label">Tiempo</span><span class="m-value" id="resT">0.0 s</span></div>
+        <div class="metric-item"><span class="m-label">Posición</span><span class="m-value" id="resX">0.0 m</span></div>
+        <div class="metric-item"><span class="m-label">Velocidad</span><span class="m-value" id="resV">0.0 m/s</span></div>
+      </div>
+    </div>
+    <div class="canvas-container">
+      <canvas id="pistaCanvas" width="340" height="120"></canvas>
+      <div class="canvas-caption">x = v₀·t + ½·a·t² · v = v₀ + a·t</div>
+    </div>
+  </div>
 </main>
 
-<!-- Scripts -->
 <script src="js/modulos.js"></script>
 <script src="js/nav.js"></script>
 <script>
-  // Renderiza los módulos de física usando la lista de modulos.js
   const mods = window.MODULOS || [];
-  const container = document.getElementById('lista-modulos');
-  
-  container.innerHTML = mods.map(m => m.archivo
-    ? `<a href="${m.archivo}">Módulo ${m.num} · ${m.titulo}</a>`
-    : `<a class="pend-card">Módulo ${m.num} · ${m.titulo}<br><span class="pend">pendiente</span></a>`
+  document.getElementById('lista-modulos').innerHTML = mods.map(m => m.archivo
+    ? `<a href="${m.archivo}" class="icon-card" title="${m.titulo}"><i class="bi ${m.icono || 'bi-atom'}"></i><span>Módulo ${m.num} · ${m.titulo}</span></a>`
+    : `<a class="icon-card pend-card"><i class="bi bi-hourglass-split"></i><span>Módulo ${m.num} · ${m.titulo}</span></a>`
   ).join('');
 </script>
 </body>

@@ -1,0 +1,111 @@
+main .hero { text-align: center; margin-bottom: 1.5rem; }
+main .hero .subtitle { opacity: .75; }
+
+main .back-link {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .9rem; text-decoration: none; margin-bottom: .8rem;
+  color: var(--accent, #6d5dfc);
+}
+
+main .topics-grid-compact {
+  display: grid; gap: .8rem; margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+}
+main .icon-card {
+  display: flex; flex-direction: column; align-items: center; gap: .4rem;
+  padding: 1rem .6rem; border-radius: 14px; text-decoration: none;
+  background: var(--card, #fff); border: 1px solid rgba(128,128,128,.25);
+  color: inherit; text-align: center; font-weight: 500; font-family: inherit;
+  transition: transform .15s, box-shadow .15s;
+}
+main .icon-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.15); }
+main .icon-card i { font-size: 1.8rem; color: var(--accent, #6d5dfc); }
+main .icon-card.pend-card { opacity: .5; pointer-events: none; }
+
+main .section-title {
+  font-size: .8rem; font-weight: 600; letter-spacing: .08em;
+  margin: 1.5rem 0 .8rem; opacity: .7;
+}
+
+main .interactive-card {
+  display: grid; gap: 1.2rem; padding: 1.2rem; border-radius: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  background: var(--card, #fff); border: 1px solid rgba(128,128,128,.25);
+}
+main .interactive-card select { padding: .3rem .5rem; border-radius: 8px; }
+main .interactive-card button.icon-card { cursor: pointer; width: 100%; flex-direction: row; justify-content: center; margin: .4rem 0 .8rem; }
+
+main .control-group { margin-bottom: .8rem; }
+main .control-group input[type=range] { width: 100%; }
+main .badge-val { padding: .1rem .5rem; border-radius: 8px; background: rgba(109,93,252,.15); font-weight: 600; }
+main .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .6rem; }
+main .metric-item { padding: .6rem; border-radius: 10px; background: rgba(128,128,128,.1); }
+main .m-label { display: block; font-size: .8rem; opacity: .7; }
+main .m-value { font-size: 1.3rem; font-weight: 700; }
+main .canvas-container { text-align: center; }
+main .canvas-caption { font-size: .8rem; opacity: .65; margin-top: .3rem; }
+main .formula { text-align: center; font-size: 1.2rem; overflow-x: auto; }
+
+/* ===== Tarjetas de módulos ===== */
+.topics-grid-compact {
+  display: grid;
+  gap: .8rem;
+  margin-bottom: 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 720px) {
+  .topics-grid-compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.icon-card {
+  display: flex; flex-direction: column; align-items: center; gap: .4rem;
+  padding: 1rem .6rem; border-radius: 14px; text-decoration: none;
+  background: var(--card, #fff); border: 1px solid rgba(128,128,128,.25);
+  color: inherit; text-align: center; font-weight: 500; font-family: inherit;
+  transition: transform .15s, box-shadow .15s;
+  min-width: 0;
+}
+.icon-card span { overflow-wrap: anywhere; line-height: 1.3; }
+.icon-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.15); }
+.icon-card i { font-size: 1.8rem; color: var(--accent, #6d5dfc); }
+.icon-card.pend-card { opacity: .5; pointer-events: none; }
+
+/* Botón ancho (ej. "Lanzar") */
+.icon-card.btn-wide {
+  cursor: pointer; width: 100%;
+  flex-direction: row; justify-content: center;
+  margin: .4rem 0 .8rem;
+}
+
+/* ===== Títulos de sección ===== */
+.section-title {
+  font-size: .8rem; font-weight: 600; letter-spacing: .08em;
+  margin: 1.5rem 0 .8rem; opacity: .7;
+}
+
+/* ===== Tarjeta interactiva (laboratorio) ===== */
+.interactive-card {
+  display: grid; gap: 1.2rem; padding: 1.2rem; border-radius: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  background: var(--card, #fff); border: 1px solid rgba(128,128,128,.25);
+}
+.control-group { margin-bottom: .8rem; }
+.control-group input[type=range] { width: 100%; }
+.badge-val {
+  padding: .1rem .5rem; border-radius: 8px;
+  background: rgba(109,93,252,.15); font-weight: 600;
+}
+
+/* ===== Métricas ===== */
+.metrics-grid {
+  display: grid; gap: .6rem;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+}
+.metric-item { padding: .6rem; border-radius: 10px; background: rgba(128,128,128,.1); }
+.m-label { display: block; font-size: .8rem; opacity: .7; }
+.m-value { font-size: 1.3rem; font-weight: 700; }
+
+/* ===== Canvas y fórmulas ===== */
+.canvas-container { text-align: center; }
+.canvas-caption { font-size: .8rem; opacity: .65; margin-top: .3rem; }
+.formula { text-align: center; font-size: 1.2rem; overflow-x: auto; }

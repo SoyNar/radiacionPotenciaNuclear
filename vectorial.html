@@ -12,6 +12,7 @@
 <!-- Hojas de estilo -->
 <link rel="stylesheet" href="css/estilo.css">
 <link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="css/componentes.css">
 <link rel="stylesheet" href="css/vectorial.css">
 
 <!-- Configuración de MathJax para fórmulas matemáticas perfectas -->
@@ -23,69 +24,36 @@
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 <body data-seccion="vectores">
-
-<!-- Menú superior global -->
 <div id="site-header"></div>
 
-<main class="vectorial-container">
-  
-  <!-- Cabecera de la sección -->
-  <header class="vector-hero">
+<main id="app" class="container">
+  <a href="index.html" class="back-link"><i class="bi bi-house"></i> Inicio</a>
+
+  <header class="hero">
     <h1>Geometría Vectorial: Espacio y Cónicas</h1>
-    <p class="subtitle">Selecciona un módulo de estudio o experimenta en el laboratorio interactivo:</p>
+    <p class="subtitle">Selecciona un módulo o experimenta con el laboratorio:</p>
   </header>
 
-  <!-- Menú de tarjetas compactas con iconos -->
-  <section class="topics-grid-compact">
-    <a href="conicas.html" class="icon-card" title="Cónicas Generales">
-      <i class="bi bi-circle-square"></i>
-      <span>Cónicas</span>
-    </a>
+  <section class="topics-grid-compact" id="lista-modulos"></section>
 
-    <a href="hiperbola.html" class="icon-card" title="La Hipérbola">
-      <i class="bi bi-intersect"></i>
-      <span>Hipérbola</span>
-    </a>
-
-    <a href="distancia-recta.html" class="icon-card" title="Distancia a una Recta">
-      <i class="bi bi-code"></i>
-      <span>Punto a Recta</span>
-    </a>
-
-    <a href="distancia-plano.html" class="icon-card" title="Distancia a un Plano">
-      <i class="bi bi-layers"></i>
-      <span>Punto a Plano</span>
-    </a>
-  </section>
-
-  <!-- LABORATORIO INTERACTIVO MEJORADO -->
   <div class="section-title">LABORATORIO INTERACTIVO DE VECTORES</div>
-
   <div class="interactive-card">
-    <div class="interactive-info">
-      <h3>Visualizador de Magnitud y Dirección</h3>
-      <p class="desc">Ajusta las coordenadas cartesianas del vector para observar su representación geométrica y cálculo analítico en tiempo real.</p>
-      
-      <div class="vector-controls">
-        <div class="control-group">
-          <label>Componente $X$: <span class="badge-val" id="valX">3</span></label>
-          <input type="range" id="rangeX" min="-6" max="6" value="3">
-        </div>
-        <div class="control-group">
-          <label>Componente $Y$: <span class="badge-val" id="valY">4</span></label>
-          <input type="range" id="rangeY" min="-6" max="6" value="4">
-        </div>
+    <div>
+      <h3>Visualizador de magnitud y dirección</h3>
+      <p class="subtitle">Ajusta las componentes del vector para ver su representación y su cálculo.</p>
+
+      <div class="control-group">
+        <label>Componente x: <span class="badge-val" id="valX">3</span></label>
+        <input type="range" id="rangeX" min="-6" max="6" value="3">
+      </div>
+      <div class="control-group">
+        <label>Componente y: <span class="badge-val" id="valY">4</span></label>
+        <input type="range" id="rangeY" min="-6" max="6" value="4">
       </div>
 
       <div class="metrics-grid">
-        <div class="metric-item">
-          <span class="m-label">Magnitud $\|\vec{v}\|$</span>
-          <span class="m-value hl" id="magResult">5.00</span>
-        </div>
-        <div class="metric-item">
-          <span class="m-label">Ángulo $\theta$</span>
-          <span class="m-value bl" id="angResult">53.13°</span>
-        </div>
+        <div class="metric-item"><span class="m-label">Magnitud ‖v‖</span><span class="m-value" id="magResult">5.00</span></div>
+        <div class="metric-item"><span class="m-label">Ángulo θ</span><span class="m-value" id="angResult">53.13°</span></div>
       </div>
     </div>
 
@@ -94,12 +62,16 @@
       <div class="canvas-caption">Plano cartesiano interactivo 2D</div>
     </div>
   </div>
-
 </main>
 
-<!-- Scripts externos -->
+<script>
+  const mods = window.MODULOS || [];
+  document.getElementById('lista-modulos').innerHTML = mods.map(m => m.archivo
+    ? `<a href="${m.archivo}" class="icon-card" title="${m.titulo}"><i class="bi ${m.icono || 'bi-atom'}"></i><span>${m.titulo}</span></a>`
+    : `<a class="icon-card pend-card"><i class="bi bi-hourglass-split"></i><span>${m.titulo}</span></a>`
+  ).join('');
+</script>
 <script src="js/vectorial.js"></script>
 <script src="js/nav.js"></script>
-
 </body>
 </html>
